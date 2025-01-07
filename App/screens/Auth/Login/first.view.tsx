@@ -52,6 +52,7 @@ function LoginView({navigation}: any) {
           borderBottomRightRadius={15}
           borderTopRightRadius={15}
           position={'relative'}
+          width={50}
           borderWidth={1}></Button>
         <Button
           borderBottomRightRadius={15}
@@ -61,6 +62,7 @@ function LoginView({navigation}: any) {
           borderBottomLeftRadius={15}
           borderTopLeftRadius={15}
           borderTopRightRadius={15}
+          width={50}
           borderWidth={1}></Button>
       </View>
     </View>

@@ -1,5 +1,6 @@
 export const LOGIN_ROUTE = 'Login';
 export const SIGNUP_ROUTE = 'Signup';
+export const SIGNOUT_ROUTE = 'Signout';
 export const SIGNIN_ROUTE = 'Signin';
 export const RESET_ROUTE = 'Reset';
 export const FORGET_ROUTE = 'Forget';

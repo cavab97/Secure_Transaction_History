@@ -18,7 +18,6 @@ export const Input = styled(TextInput)<{
   $width: string;
   $label: string;
   $mode: string;
-  $placeholder: string;
   $padding: string;
 }>`
   /* Adapt the colors based on primary prop */

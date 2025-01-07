@@ -18,6 +18,7 @@ const initialState: any = {
   loading: false,
   error: null,
   data: null,
+  loginState: false,
 };
 
 /**
@@ -81,9 +82,13 @@ export const authSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
     },
+    successLogin: (state, action: PayloadAction<boolean>) => {
+      state.loginState = true;
+    },
   },
 });
 
-export const {increment, decrement, incrementByAmount} = authSlice.actions;
+export const {increment, decrement, incrementByAmount, successLogin} =
+  authSlice.actions;
 
 export default authSlice.reducer;

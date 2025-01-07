@@ -21,10 +21,12 @@ function LoginInput({
   padding = 0,
   alignItems = 'stretch',
   alignSelf = 'flex-start',
+  secureTextEntry = false,
 }: any) {
   return (
     <Input
       label={label}
+      secureTextEntry={secureTextEntry}
       alignItems={alignItems}
       alignSelf={alignSelf}
       padding={padding}

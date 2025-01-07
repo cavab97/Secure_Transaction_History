@@ -14,12 +14,18 @@ function BottonView({
   position,
   borderWidth,
   onPress,
+  width,
+  padding,
+  marginTop,
 }: any) {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <Button
+      $marginTop={marginTop}
+      $padding={padding}
       onPress={onPress}
+      $width={width}
       $primary={isDarkMode}
       $bblRadius={borderBottomLeftRadius}
       $bbrRadius={borderBottomRightRadius}

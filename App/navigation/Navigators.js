@@ -12,10 +12,10 @@ function Navigators() {
   console.log('authState');
   console.log(authState);
 
-  const {loading, error, data} = authState;
+  const {loading, error, data, loginState} = authState;
   return (
     <NavigationContainer>
-      {data === null ? (
+      {!loginState ? (
         <AuthRoutes loading={loading} data={data} error={error} />
       ) : (
         <ProtectedRoutes />

@@ -14,9 +14,15 @@ function LoginButton({
   position = 'relative',
   borderWidth = 0,
   onPress,
+  width = 100,
+  padding = 1,
+  marginTop = 0,
 }: any) {
   return (
     <Botton
+      marginTop={marginTop}
+      padding={padding}
+      width={width}
       onPress={onPress}
       borderBottomRightRadius={borderBottomRightRadius}
       borderBottomLeftRadius={borderBottomLeftRadius}

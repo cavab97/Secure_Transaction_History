@@ -21,17 +21,21 @@ function InputView({
   alignSelf,
   width,
   padding,
+  secureTextEntry,
 }: any) {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
     <Input
+      label={label}
+      secureTextEntry={secureTextEntry}
+      placeholder={placeholder}
+      mode="outlined"
       $alignItems={alignItems}
       $alignSelf={alignSelf}
       $width={width}
       $label={label}
       $mode={mode}
-      $placeholder={placeholder}
       $primary={isDarkMode}
       $padding={padding}
       $bblRadius={borderBottomLeftRadius}
