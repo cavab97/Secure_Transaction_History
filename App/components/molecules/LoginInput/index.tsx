@@ -17,10 +17,17 @@ function LoginInput({
   label = '',
   mode = 'outlined',
   placeholder = '',
+  width = 100,
+  padding = 0,
+  alignItems = 'stretch',
+  alignSelf = 'flex-start',
 }: any) {
   return (
     <Input
       label={label}
+      alignItems={alignItems}
+      alignSelf={alignSelf}
+      padding={padding}
       mode={mode}
       placeholder={placeholder}
       borderBottomRightRadius={borderBottomRightRadius}
@@ -32,7 +39,8 @@ function LoginInput({
       marginLeft={marginLeft}
       position={position}
       borderWidth={borderWidth}
-      borderBottomWidth={borderBottomWidth}></Input>
+      borderBottomWidth={borderBottomWidth}
+      width={width}></Input>
   );
 }
 

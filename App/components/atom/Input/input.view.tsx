@@ -20,6 +20,7 @@ function InputView({
   alignItems,
   alignSelf,
   width,
+  padding,
 }: any) {
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -32,6 +33,7 @@ function InputView({
       $mode={mode}
       $placeholder={placeholder}
       $primary={isDarkMode}
+      $padding={padding}
       $bblRadius={borderBottomLeftRadius}
       $bbrRadius={borderBottomRightRadius}
       $btlRadius={borderTopLeftRadius}

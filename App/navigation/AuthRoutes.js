@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {LOGIN_ROUTE, SIGNIN_ROUTE} from './Constants';
 import SplashScreen from '../components/SplashScreen';
-import LoginContainer from '../screens/Auth/Login/login.container';
+import LoginContainer from '../screens/Auth/Login/first.container';
 import SigninView from '../screens/Auth/SignIn/signIn.view';
 
 const Stack = createNativeStackNavigator();

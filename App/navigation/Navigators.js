@@ -8,7 +8,10 @@ import AuthRoutes from './AuthRoutes';
 enableScreens();
 
 function Navigators() {
-  const authState = useSelector(state => state.auth);
+  const authState = useSelector(state => state.auths);
+  console.log('authState');
+  console.log(authState);
+
   const {loading, error, data} = authState;
   return (
     <NavigationContainer>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {SIGNIN_ROUTE} from './../../../navigation/Constants';
+import {SIGNIN_ROUTE} from '../../../navigation/Constants';
 
 import {useDispatch} from 'react-redux';
 import {View, TextInput, Text, StatusBar, TouchableOpacity} from 'react-native';

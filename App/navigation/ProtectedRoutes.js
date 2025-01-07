@@ -5,7 +5,7 @@ import {ABOUT_ROUTE, HOME_ROUTE, LOGIN_ROUTE, POST_ROUTE} from './Constants';
 import HomeContainer from '../screens/Home/home.container';
 import AboutContainer from '../screens/About/about.container';
 import PostContainer from '../screens/Posts/post.container';
-import LoginContainer from '../screens/Auth/Login/login.container';
+import LoginContainer from '../screens/Auth/Login/first.container';
 
 const Drawer = createDrawerNavigator();
 

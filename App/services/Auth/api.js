@@ -11,7 +11,7 @@ import {API_BASE_URL} from '../index';
 export const login = async params => {
   try {
     const response = await axios.get(`${API_BASE_URL}/auth`, {params});
-    return response.data;
+    return response?.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || error.message);
   }

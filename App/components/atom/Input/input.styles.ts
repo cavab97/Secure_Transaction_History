@@ -19,14 +19,15 @@ export const Input = styled(TextInput)<{
   $label: string;
   $mode: string;
   $placeholder: string;
+  $padding: string;
 }>`
   /* Adapt the colors based on primary prop */
   background: ${props => MainColour(props.$primary).secondaryColour};
   color: ${props => (props.$primary ? 'black' : '#BF4F74')};
-  padding: 1px;
-  align-items: center;
-  align-self: center;
-  width: 50%;
+  padding: ${props => props.$padding}px;
+  align-items: ${props => props.$alignItems};
+  align-self: ${props => props.$alignSelf};
+  width: ${props => props.$width}%;
   border-bottom-left-radius: ${props => props.$bblRadius}px;
   border-bottom-right-radius: ${props => props.$bbrRadius}px;
   border-top-left-radius: ${props => props.$btlRadius}px;

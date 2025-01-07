@@ -1,5 +1,5 @@
 import {all} from 'redux-saga/effects';
-import {authSaga} from './Auth/Saga';
+import authSaga from './Auth/Saga';
 import {postSaga} from './Post/Saga';
 
 // import additional sagas as needed
@@ -7,7 +7,7 @@ import {postSaga} from './Post/Saga';
 export default function* rootSaga() {
   yield all([
     authSaga(),
-    postSaga(),
+    // postSaga(),
     // add additional sagas here
   ]);
 }

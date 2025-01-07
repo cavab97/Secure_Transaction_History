@@ -30,7 +30,8 @@ function LoginView() {
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
-        borderBottomWidth={1}
+
+        // borderBottomWidth={1}
       />
       <LoginInput
         placeholderTextColor="red"
@@ -38,7 +39,7 @@ function LoginView() {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
-        borderBottomWidth={1}
+        // borderBottomWidth={1}
       />
       <TextInput
         mode="outlined"
