@@ -2,6 +2,7 @@ import {View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Botton from '../../atom/Button/button.view';
 import Text from '../../atom/Text/text.view';
+import { LoginButtonProps } from '../../../model';
 function LoginButton({
   Title,
   borderBottomRightRadius = 0,
@@ -11,13 +12,13 @@ function LoginButton({
   borderRightColor = 'black',
   borderRightWidth = 0,
   marginLeft = 0,
-  position = 'relative',
+  position = "relative",
   borderWidth = 0,
   onPress,
   width = 100,
   padding = 1,
   marginTop = 0,
-}: any) {
+}: LoginButtonProps) {
   return (
     <Botton
       marginTop={marginTop}

@@ -6,7 +6,7 @@ import { postRequest } from "../../redux/Post/Actions";
 function PostContainer(props) {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.post);
-  const shouldLog = useRef(true);
+  const shouldLog = useRef(true); // useEffect Unmount
   useEffect(() => {
     if (shouldLog.current) shouldLog = false;
     dispatch(postRequest());

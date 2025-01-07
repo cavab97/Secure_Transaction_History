@@ -69,7 +69,7 @@ function LoginView({navigation}: any) {
           borderBottomRightRadius={15}
           Title={'Back'}
           borderRightColor={'grey'}
-          borderRightWidth={'1.5'}
+          borderRightWidth={1.5}
           borderBottomLeftRadius={15}
           borderTopLeftRadius={15}
           borderTopRightRadius={15}
@@ -81,7 +81,7 @@ function LoginView({navigation}: any) {
           borderBottomRightRadius={15}
           Title={'LOGIN'}
           borderRightColor={'grey'}
-          borderRightWidth={'1.5'}
+          borderRightWidth={1.5}
           borderBottomLeftRadius={15}
           borderTopLeftRadius={15}
           borderTopRightRadius={15}

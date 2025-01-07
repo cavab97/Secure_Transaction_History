@@ -1,6 +1,7 @@
 import {View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Image from '../../atom/image/image.view';
+import { ImageViewProps } from '../../../model';
 function ImageView({
   Title,
   borderBottomRightRadius = 0,
@@ -13,8 +14,8 @@ function ImageView({
   position = 'relative',
   borderWidth = 0,
   borderBottomWidth = 0,
-  source = '#',
-}: any) {
+  source = undefined,
+}: ImageViewProps) {
   return (
     <Image
       borderBottomRightRadius={borderBottomRightRadius}
