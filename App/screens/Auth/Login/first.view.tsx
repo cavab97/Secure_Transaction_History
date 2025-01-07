@@ -33,6 +33,7 @@ function LoginView({navigation}: any) {
         autoPlay={true}
         loop={false}
       />
+      
       <View
         style={{
           flexDirection: 'column',

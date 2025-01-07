@@ -21,6 +21,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "antd-mobile": "^5.30.0",
     "axios": "^1.4.0",
+    "axios-mock-adapter": "^2.1.0",
     "lottie-react-native": "^6.1.2",
     "react": "18.2.0",
     "react-native": "0.71.8",
