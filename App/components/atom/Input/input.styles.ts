@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import {MainColour} from '../../helpers/colors';
-export const Button = styled.TouchableOpacity<{
+import {TextInput} from 'react-native-paper';
+export const Input = styled(TextInput)<{
   $primary?: boolean;
   $bblRadius: string; // border-bottom-left-radius
   $bbrRadius: string; // border-bottom-right-radius
@@ -11,11 +12,17 @@ export const Button = styled.TouchableOpacity<{
   $brColor: string;
   $position: string;
   $borderWidth: string;
+  $borderBottomWidth: string;
+  $alignItems: string;
+  $alignSelf: string;
+  $width: string;
+  $label: string;
+  $mode: string;
+  $placeholder: string;
 }>`
   /* Adapt the colors based on primary prop */
-
   background: ${props => MainColour(props.$primary).secondaryColour};
-  color: ${props => MainColour(props.$primary).primaryColour};
+  color: ${props => (props.$primary ? 'black' : '#BF4F74')};
   padding: 1px;
   align-items: center;
   align-self: center;
@@ -30,4 +37,5 @@ export const Button = styled.TouchableOpacity<{
   position: ${props => props.$position};
   border-color: ${props => MainColour(props.$primary).primaryColour};
   border-width: ${props => props.$borderWidth}px;
+  border-bottom-width: ${props => props.$borderBottomWidth}px;
 `;

@@ -1,8 +1,8 @@
 import {View, Text, useColorScheme} from 'react-native';
 import React from 'react';
-import {Button} from './button.styles';
+import {ImageView} from './image.styles';
 
-function BottonView({
+function InputView({
   children,
   borderBottomRightRadius,
   borderBottomLeftRadius,
@@ -13,13 +13,14 @@ function BottonView({
   marginLeft,
   position,
   borderWidth,
-  onPress,
+  borderBottomWidth,
+  source,
 }: any) {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <Button
-      onPress={onPress}
+    <ImageView
+      source={source}
       $primary={isDarkMode}
       $bblRadius={borderBottomLeftRadius}
       $bbrRadius={borderBottomRightRadius}
@@ -28,11 +29,10 @@ function BottonView({
       $marginLeft={marginLeft}
       $brWidth={borderRightWidth}
       $brColor={borderRightColor}
+      $position={position}
       $borderWidth={borderWidth}
-      $position={position}>
-      {children}
-    </Button>
+      $borderBottomWidth={borderBottomWidth}></ImageView>
   );
 }
 
-export default BottonView;
+export default InputView;
