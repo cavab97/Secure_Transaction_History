@@ -8,7 +8,7 @@ const initialState = {
   data: null,
 };
 /**
- * @author Usman Bashir
+ * @author
  * @description Pure function to manipulate state without mutating immutably
  * @returns states
  */
