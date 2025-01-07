@@ -1,8 +1,8 @@
 import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
-import {styles} from '../../styles/Posts/index.style';
+import {styles} from './button.styles';
 
-function PostView({navigate, data}) {
+function BottonView({navigate, data}) {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -18,4 +18,4 @@ function PostView({navigate, data}) {
   );
 }
 
-export default PostView;
+export default BottonView;

@@ -12,7 +12,7 @@ import {
 const initialState = {
   loading: false,
   error: null,
-  data: {},
+  data: null,
 };
 /**
  * @author Usman Bashir
