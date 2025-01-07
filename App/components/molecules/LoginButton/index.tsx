@@ -2,7 +2,7 @@ import {View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Botton from '../../atom/Button/button.view';
 import Text from '../../atom/Text/text.view';
-import { LoginButtonProps } from '../../../model';
+import { LoginButtonProps } from '../../../model/Component';
 function LoginButton({
   Title,
   borderBottomRightRadius = 0,

@@ -1,4 +1,4 @@
-import { ImageSourcePropType } from "react-native";
+import {ImageSourcePropType} from 'react-native';
 
 export interface LoginButtonProps {
   Title: string;
@@ -9,7 +9,7 @@ export interface LoginButtonProps {
   borderRightColor?: string;
   borderRightWidth?: number;
   marginLeft?: number;
-  position?: "relative" | "absolute" | "fixed" | "sticky" | "static";
+  position?: 'relative' | 'absolute' | 'fixed' | 'sticky' | 'static';
   borderWidth?: number;
   onPress?: () => void;
   width?: number;
@@ -26,7 +26,7 @@ export interface ImageViewProps {
   borderRightColor?: string; // Optional, string for border color
   borderRightWidth?: number; // Optional, number for border width
   marginLeft?: number; // Optional, number for margin left
-  position?: "relative" | "absolute" | "fixed" | "sticky"; // Optional, a limited set of string values for position
+  position?: 'relative' | 'absolute' | 'fixed' | 'sticky'; // Optional, a limited set of string values for position
   borderWidth?: number; // Optional, number for border width
   borderBottomWidth?: number; // Optional, number for bottom border width
   source?: ImageSourcePropType; // Optional, image source (use ImageSourcePropType for safe image handling in React Native)

@@ -8,15 +8,17 @@ import {POST_REQUEST} from './Constants';
  * @description Call ap api in using redux in async way by the action provided using Redux-Saga Middleware
  * @param {*} action
  */
-function* postAction(action) {
+
+// The generator function
+function* postAction(action: PostAction): Generator<any, void, Post[]> {
   try {
-    const posts = yield call(getPost, action.payload);
+    // Yield the call to getPost with the action payload
+    const posts: Post[] = yield call(getPost, action.payload);
+
+    // Dispatch the success action with the posts data
     yield put(postSuccess(posts));
-  } catch (error) {
+  } catch (error: any) {
+    // Dispatch the error action with the error message
     yield put(postError(error.message));
   }
-}
-
-export default function* postSaga() {
-  yield takeLatest(POST_REQUEST, postAction);
 }

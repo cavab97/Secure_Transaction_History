@@ -5,22 +5,20 @@ import {
   TouchableOpacity,
   SafeAreaView,
   StyleSheet,
-} from "react-native";
-import { matrix } from "../../components/helpers";
-import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import SocialMedia from "./socialMedia/index";
-function HomeView({ navigate }) {
+} from 'react-native';
+import {matrix} from '../../components/helpers';
+import React from 'react';
+import {ScrollView} from 'react-native-gesture-handler';
+function HomeView({navigate}) {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{flex: 1}}>
       <View
         style={{
-          alignItems: "center",
-          backgroundColor: "yellow",
-        }}
-      >
+          alignItems: 'center',
+          backgroundColor: 'yellow',
+        }}>
         <Image
-          source={require("../../assets/images/profile.jpg")}
+          source={require('../../assets/images/profile.jpg')}
           resizeMode="contain"
           style={{
             width: matrix.horizontalScale(100),
@@ -28,22 +26,21 @@ function HomeView({ navigate }) {
           }}
           borderRadius={10}
         />
-        <Text style={{ fontWeight: "bold", fontSize: 20 }}>LEONG WEI MEN</Text>
-        <Text style={{ fontSize: 15 }}>Mobile Application Developer</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 20}}>LEONG WEI MEN</Text>
+        <Text style={{fontSize: 15}}>Mobile Application Developer</Text>
         <View>
-          <TouchableOpacity>{SocialMedia("fb")}</TouchableOpacity>
+          <TouchableOpacity>{SocialMedia('fb')}</TouchableOpacity>
         </View>
       </View>
       <View
         style={{
           flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "grey",
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'grey',
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
-        }}
-      >
+        }}>
         <ScrollView>
           <Text style={styles.text}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

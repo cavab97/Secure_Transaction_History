@@ -1,7 +1,7 @@
 import {View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Image from '../../atom/image/image.view';
-import { ImageViewProps } from '../../../model';
+import { ImageViewProps } from '../../../model/Component';
 function ImageView({
   Title,
   borderBottomRightRadius = 0,
