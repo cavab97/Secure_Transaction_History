@@ -2,7 +2,6 @@ import axios from 'axios';
 import {API_BASE_URL} from '../index';
 
 /**
- * @author Usman Bashir
  * @function login
  * @description Call Login Endpoint to authenticate user
  * @param {*} params

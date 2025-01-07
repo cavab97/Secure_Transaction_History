@@ -7,7 +7,7 @@ import {
   LOGOUT_FAILED,
 } from './Constants';
 /**
- * @author Usman Bashir
+
  * @function loginRequest
  * @param {*} payload
  * @description Return type for login request to reducer
@@ -19,7 +19,6 @@ export const loginRequest = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function loginSuccess
  * @param {*} payload
  * @description Return type for login success to reducer
@@ -31,7 +30,6 @@ export const loginSuccess = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function loginError
  * @param {*} payload
  * @description Return type for login failed to reducer
@@ -43,7 +41,6 @@ export const loginError = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function logoutRequest
  * @param {*} payload
  * @description Return type for logout request to reducer
@@ -55,7 +52,6 @@ export const logoutRequest = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function logoutSuccess
  * @param {*} payload
  * @description Return type for logout success to reducer
@@ -67,7 +63,6 @@ export const logoutSuccess = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function logoutError
  * @param {*} payload
  * @description Return type for logout failed to reducer

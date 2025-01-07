@@ -4,7 +4,6 @@ import {postError, postSuccess} from './Actions';
 import {POST_REQUEST} from './Constants';
 
 /**
- * @author Usman Bashir
  * @function postAction
  * @description Call ap api in using redux in async way by the action provided using Redux-Saga Middleware
  * @param {*} action

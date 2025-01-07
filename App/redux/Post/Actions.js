@@ -1,6 +1,5 @@
 import {POST_REQUEST, POST_SUCCESS, POST_FAILED} from './Constants';
 /**
- * @author Usman Bashir
  * @function postRequest
  * @param {*} payload
  * @description Return type for post request to reducer
@@ -12,7 +11,6 @@ export const postRequest = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function postSuccess
  * @param {*} payload
  * @description Return type for post success to reducer
@@ -24,7 +22,6 @@ export const postSuccess = payload => ({
 });
 
 /**
- * @author Usman Bashir
  * @function postError
  * @param {*} payload
  * @description Return type for Post failed to reducer

@@ -22,7 +22,6 @@ const initialState: any = {
 };
 
 /**
- * @author Usman Bashir
  * @description Pure function to manipulate state without mutating immutably
  * @returns states
  */

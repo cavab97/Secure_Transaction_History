@@ -4,7 +4,6 @@ import {login} from '../../services/Auth/api';
 import {loginError, loginSuccess} from './Actions';
 
 /**
- * @author Usman Bashir
  * @function loginAction
  * @description Call ap api in using redux in async way by the action provided using Redux-Saga Middleware
  * @param {*} action

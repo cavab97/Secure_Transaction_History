@@ -2,7 +2,6 @@ import axios from 'axios';
 import {JSON_PLACEHOLDER_FAKE_API_MOCK} from '../index';
 
 /**
- * @author Usman Bashir
  * @function getPost
  * @description Call getPost Endpoint to get posts
  * @returns Posts
