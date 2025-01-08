@@ -42,7 +42,8 @@ function LoginInput({
       position={position}
       borderWidth={borderWidth}
       borderBottomWidth={borderBottomWidth}
-      width={width}></Input>
+      width={width}
+      ></Input>
   );
 }
 

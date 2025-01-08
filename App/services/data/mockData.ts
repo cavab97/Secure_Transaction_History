@@ -1,4 +1,4 @@
-const mockFiles = [
+export const mockFiles = [
   {
     amount: 120.5,
     date: '2025-01-01',

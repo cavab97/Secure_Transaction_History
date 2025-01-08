@@ -47,7 +47,8 @@ function InputView({
       $brColor={borderRightColor}
       $position={position}
       $borderWidth={borderWidth}
-      $borderBottomWidth={borderBottomWidth}>
+      $borderBottomWidth={borderBottomWidth}
+      >
       {children}
     </Input>
   );

@@ -2,6 +2,7 @@ import axios, {AxiosError} from 'axios';
 import {API_BASE_URL} from '../index';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import {LoginModel} from '../../model/Login';
+import {loginDetails, loginFailed} from '../data/loginData';
 
 /**
  * @function login
@@ -19,12 +20,23 @@ mock.onGet('/auth').reply(200, loginDetails);
 export const login = async (params: LoginModel) => {
   try {
     const response = await axios.get('/auth'); // Request to the mocked endpoint
-    console.log('loginDetails' + {response});
-    return response?.data.loginDetails;
+
+    if (
+      params.username === response.data.username &&
+      params.password === response.data.password
+    ) {
+      return response?.data.loginDetails;
+    } else {
+      mock.onGet('/authFailed').reply(200, loginFailed); //
+
+      const responseError = await axios.get('/authFailed'); // Request to the mocked endpoint
+      console.log(responseError.data.error.message);
+
+      // throw responseError.data.error.message;
+      throw new Error(responseError.data.error.message);
+    }
   } catch (error) {
-    // Ensuring the error is of type AxiosError
     if (error instanceof AxiosError) {
-      // Access error response and message if available
       const errorMessage = error.response?.data?.message || error.message;
       throw new Error(errorMessage);
     }

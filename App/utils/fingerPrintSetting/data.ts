@@ -1,4 +1,4 @@
-const optionalConfigObject = {
+export const optionalConfigObject = {
   title: 'Authentication Required', // Android
   imageColor: '#e00606', // Android
   imageErrorColor: '#ff0000', // Android

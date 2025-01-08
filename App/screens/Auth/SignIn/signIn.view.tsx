@@ -10,10 +10,14 @@ import {TextInput} from 'react-native-paper';
 import LottieView from 'lottie-react-native';
 import {MainAnimation} from '../../../components/helpers/index';
 import {HOME_ROUTE} from '../../../navigation/Constants';
+import TouchID from 'react-native-touch-id';
+import { showMessage } from 'react-native-flash-message';
+import { optionalConfigObject } from '../../../utils/fingerPrintSetting/data';
+import { handleBiometricError } from '../../../utils/errorHandle/fingerprint';
 
 function LoginView({navigation}: any) {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState('john_doe');
+  const [password, setPassword] = React.useState('securePassword123');
   const dispatch = useDispatch();
 
   const signIn = (username: any, password: any) => {
@@ -24,12 +28,63 @@ function LoginView({navigation}: any) {
       }),
     );
   };
+
+  const pressHandler = async () => {
+
+    const optionalConfigObjects = {
+      unifiedErrors: false ,// use unified error messages (default false)
+      passcodeFallback: false // if true is passed, itwill allow isSupported to return an error if the device is not enrolled in touch id/face id etc. Otherwise, it will just tell you what method is supported, even if the user is not enrolled.  (default false)
+    }
+     
+    TouchID.isSupported(optionalConfigObjects)
+      .then(biometryType => {
+        // Success code
+        if (biometryType === 'FaceID') {
+            console.log('FaceID is supported.');
+        } else {
+            console.log('TouchID is supported.');
+        }
+      })
+      .catch(error => {
+        // Failure code
+        console.log(error);
+        
+      });
+
+
+    TouchID.authenticate('Please LogIn', optionalConfigObject)
+      .then((success:boolean) => {
+        if (success ) {
+          // this.login();
+
+          // this.setState(
+          //   {
+          //     license_number: licenseNumber,
+          //     password: pwboat,
+          //   },
+          //   () => {
+          //     this.handleLogin();
+          //   },
+          // );
+        } else {
+          showMessage({
+            message: 'You need to log in once',
+            type: 'danger',
+          });
+        }
+        // AlertIOS.alert('Authenticated Successfully');
+        console.log('Authenticated Successfully');
+      })
+      .catch((error:any) => {
+        // showMessage({
+        //   message: 'You need to log in once',
+        //   type: 'danger',
+        // });
+        handleBiometricError(error);
+      });
+  };
   return (
     <View>
-      {/* <BottonView onPress={() => signIn({username, password})}>
-        <Text style={{color: 'black'}}>Sign in</Text>
-        <Text style={{color: 'black'}}>222222</Text>
-      </BottonView> */}
       <LottieView
         style={{height: '50%', width: '100%'}}
         source={MainAnimation('FirstScreen')}
@@ -37,15 +92,15 @@ function LoginView({navigation}: any) {
         loop={false}
       />
       <View style={{width: '90%', alignSelf: 'center'}}>
-        <LoginInput
+        <TextInput
           placeholder="Email"
           value={username}
           onChangeText={setUsername}
           label={'Email'}
-
+          right={<TextInput.Icon icon="fingerprint" onPressIn={()=>pressHandler()}/>}
           // borderBottomWidth={1}
         />
-        <LoginInput
+        <TextInput
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
@@ -53,13 +108,12 @@ function LoginView({navigation}: any) {
           label={'Password'}
         />
       </View>
-
+    
       <View
         style={{
           flexDirection: 'row',
           width: '90%',
           alignSelf: 'center',
-          // marginLeft: 35,
           alignContent: 'center',
           alignItems: 'center',
         }}>
@@ -76,7 +130,7 @@ function LoginView({navigation}: any) {
           width={50}
           borderWidth={1}></Button>
         <Button
-          onPress={() => dispatch(successLogin())}
+          onPress={() => dispatch(loginRequest({username,password}))}
           marginTop={10}
           borderBottomRightRadius={15}
           Title={'LOGIN'}
@@ -87,6 +141,7 @@ function LoginView({navigation}: any) {
           borderTopRightRadius={15}
           width={50}
           borderWidth={1}></Button>
+          
       </View>
     </View>
   );

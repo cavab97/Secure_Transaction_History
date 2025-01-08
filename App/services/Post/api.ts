@@ -15,7 +15,6 @@ const mock = new AxiosMockAdapter(axios);
 mock.onGet('/mock-data').reply(200, mockFiles);
 export const getPost = async (payload: any): Promise<Post[]> => {
   try {
-    // const response = await axios.get(`${JSON_PLACEHOLDER_FAKE_API_MOCK}posts`);
     const response = await axios.get('/mock-data'); // Request to the mocked endpoint
     return response.data;
   } catch (error) {

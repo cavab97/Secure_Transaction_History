@@ -1,4 +1,4 @@
-const loginDetails = {
+export const loginDetails = {
   username: 'john_doe',
   password: 'securePassword123',
   successResponse: {
@@ -14,5 +14,12 @@ const loginDetails = {
     },
     auth_token:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNjc5ODk5NjA3fQ.LsF27IHbz5BCh_z0QgRlGs6UxzJr5esPQ5dF-WxQXlM',
+  },
+};
+
+export const loginFailed = {
+  error: {
+    message: 'Invalid username or password',
+    code: 'INVALID_CREDENTIALS',
   },
 };

@@ -81,7 +81,7 @@ export const authSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload;
     },
-    successLogin: (state, action: PayloadAction<boolean>) => {
+    successLogin: state => {
       state.loginState = true;
     },
   },

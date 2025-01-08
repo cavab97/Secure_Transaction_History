@@ -2,6 +2,7 @@ import {call, put, takeLatest} from 'redux-saga/effects';
 import {getPost} from '../../services/Post/api';
 import {postError, postSuccess} from './Actions';
 import {POST_REQUEST} from './Constants';
+import {Post, PostAction} from '../../model/Posts';
 
 /**
  * @function postAction

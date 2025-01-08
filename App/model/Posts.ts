@@ -1,11 +1,11 @@
 // Define types
-interface Post {
+export interface Post {
   id: number;
   title: string;
   body: string;
 }
 
-interface PostAction {
+export interface PostAction {
   type: string;
   payload: any;
 }
