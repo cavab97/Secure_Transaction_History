@@ -11,6 +11,10 @@ import {matrix} from '../../components/helpers'; // Ensure this is typed correct
 import {ScrollView} from 'react-native-gesture-handler';
 import SocialMedia from './socialMedia/index';
 import {mockFiles} from '../../services/data/mockData';
+import Icon from 'react-native-vector-icons/Feather';
+import {handlePayment} from '../../utils/paymentType';
+import {paymentMethod} from '../../model/transactionType';
+import {unixToDate} from '../../utils/time';
 
 // Define types for the props, if necessary
 interface HomeViewProps {
@@ -36,21 +40,31 @@ const HomeView: React.FC<HomeViewProps> = () => {
 
       <View style={styles.contentContainer}>
         <ScrollView>
-          {mockFiles.map((item, index) => (
-            <View key={index} style={styles.itemContainer}>
-              <View>
-                <Image
-                  source={require('../../assets/images/profile.jpg')}
-                  resizeMode="contain"
-                  style={styles.profileImage}
-                  borderRadius={10}
-                />
+          {mockFiles.reverse().map((item, index) => (
+            <View>
+              <Text>{unixToDate(item?.date, 'DD MMM YYYY HH:mm:ss')}</Text>
+              <View key={index} style={styles.itemContainer}>
+                <View style={styles.itemInnerLeftContainer}>
+                  <Image
+                    source={require('../../assets/images/sampleBank.png')}
+                    resizeMode="contain"
+                    style={styles.transactionImage}
+                    borderRadius={10}
+                  />
+                </View>
+                <View style={styles.itemInnerCenterContainer}>
+                  <Text style={styles.itemDescriptionFont}>
+                    {item.description.toString()}
+                  </Text>
+                </View>
+                <View style={styles.itemInnerRightContainer}>
+                  {handlePayment(item.type as paymentMethod, item.amount)}
+                  <Icon name="chevron-right" size={30} color="#900" />
+                </View>
               </View>
-              <Text style={styles.itemText}>{item.description.toString()}</Text>
             </View>
           ))}
         </ScrollView>
-        <Text>Home Screen</Text>
       </View>
     </SafeAreaView>
   );
@@ -63,8 +77,13 @@ const styles = StyleSheet.create({
     backgroundColor: 'yellow',
   },
   profileImage: {
-    width: matrix.horizontalScale(100),
-    height: matrix.verticalScale(100),
+    width: matrix.horizontalScale(70),
+    height: matrix.verticalScale(70),
+  },
+  transactionImage: {
+    width: matrix.horizontalScale(50),
+    height: matrix.verticalScale(50),
+    alignSelf: 'center',
   },
   nameText: {
     fontWeight: 'bold',
@@ -87,17 +106,46 @@ const styles = StyleSheet.create({
     float: 'left',
     width: '100%',
     position: 'relative',
-    backgroundColor: 'yellow',
+    backgroundColor: 'red',
     flex: 1,
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
     paddingRight: 15,
     paddingLeft: 15,
+    borderColor: 'grey',
+    borderBottomWidth: 1,
+    borderStyle: 'dashed',
+    height: matrix.verticalScale(100),
   },
-  itemText: {},
+  itemInnerLeftContainer: {
+    backgroundColor: 'green',
+    width: '20%',
+    minWidth: '20%',
+  },
+  itemInnerCenterContainer: {
+    backgroundColor: 'green',
+    width: '35%',
+    minWidth: '30%',
+  },
+  itemInnerRightContainer: {
+    backgroundColor: 'purple',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '35%',
+    minWidth: '30%',
+    justifyContent: 'space-around',
+  },
+
+  itemMethodTypeFont: {
+    fontSize: 13,
+    fontWeight: 'bold',
+  },
+  itemDescriptionFont: {
+    fontStyle: 'italic',
+    transform: [{skewX: '23deg'}],
+  },
 });
 
 export default HomeView;
