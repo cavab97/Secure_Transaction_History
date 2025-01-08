@@ -11,9 +11,9 @@ import LottieView from 'lottie-react-native';
 import {MainAnimation} from '../../../components/helpers/index';
 import {HOME_ROUTE} from '../../../navigation/Constants';
 import TouchID from 'react-native-touch-id';
-import { showMessage } from 'react-native-flash-message';
-import { optionalConfigObject } from '../../../utils/fingerPrintSetting/data';
-import { handleBiometricError } from '../../../utils/errorHandle/fingerprint';
+import {showMessage} from 'react-native-flash-message';
+import {optionalConfigObject} from '../../../utils/fingerPrintSetting/data';
+import {handleBiometricError} from '../../../utils/errorHandle/fingerprint';
 
 function LoginView({navigation}: any) {
   const [username, setUsername] = React.useState('john_doe');
@@ -30,31 +30,29 @@ function LoginView({navigation}: any) {
   };
 
   const pressHandler = async () => {
-
     const optionalConfigObjects = {
-      unifiedErrors: false ,// use unified error messages (default false)
-      passcodeFallback: false // if true is passed, itwill allow isSupported to return an error if the device is not enrolled in touch id/face id etc. Otherwise, it will just tell you what method is supported, even if the user is not enrolled.  (default false)
-    }
-     
+      unifiedErrors: false, // use unified error messages (default false)
+      passcodeFallback: false, // if true is passed, itwill allow isSupported to return an error if the device is not enrolled in touch id/face id etc. Otherwise, it will just tell you what method is supported, even if the user is not enrolled.  (default false)
+    };
+
     TouchID.isSupported(optionalConfigObjects)
       .then(biometryType => {
         // Success code
         if (biometryType === 'FaceID') {
-            console.log('FaceID is supported.');
+          console.log('FaceID is supported.');
         } else {
-            console.log('TouchID is supported.');
+          console.log('TouchID is supported.');
         }
       })
       .catch(error => {
         // Failure code
         console.log(error);
-        
       });
 
-
     TouchID.authenticate('Please LogIn', optionalConfigObject)
-      .then((success:boolean) => {
-        if (success ) {
+      .then((success: boolean) => {
+        if (success) {
+          dispatch(loginRequest({username, password}));
           // this.login();
 
           // this.setState(
@@ -75,7 +73,7 @@ function LoginView({navigation}: any) {
         // AlertIOS.alert('Authenticated Successfully');
         console.log('Authenticated Successfully');
       })
-      .catch((error:any) => {
+      .catch((error: any) => {
         // showMessage({
         //   message: 'You need to log in once',
         //   type: 'danger',
@@ -97,7 +95,12 @@ function LoginView({navigation}: any) {
           value={username}
           onChangeText={setUsername}
           label={'Email'}
-          right={<TextInput.Icon icon="fingerprint" onPressIn={()=>pressHandler()}/>}
+          right={
+            <TextInput.Icon
+              icon="fingerprint"
+              onPressIn={() => pressHandler()}
+            />
+          }
           // borderBottomWidth={1}
         />
         <TextInput
@@ -108,7 +111,7 @@ function LoginView({navigation}: any) {
           label={'Password'}
         />
       </View>
-    
+
       <View
         style={{
           flexDirection: 'row',
@@ -130,7 +133,7 @@ function LoginView({navigation}: any) {
           width={50}
           borderWidth={1}></Button>
         <Button
-          onPress={() => dispatch(loginRequest({username,password}))}
+          onPress={() => dispatch(loginRequest({username, password}))}
           marginTop={10}
           borderBottomRightRadius={15}
           Title={'LOGIN'}
@@ -141,7 +144,6 @@ function LoginView({navigation}: any) {
           borderTopRightRadius={15}
           width={50}
           borderWidth={1}></Button>
-          
       </View>
     </View>
   );

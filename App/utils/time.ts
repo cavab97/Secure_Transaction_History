@@ -19,6 +19,9 @@ export const unixToDate = (unix: any, format: any) => {
     ? moment.unix(unix).tz('Asia/Singapore').format(format).toUpperCase()
     : null;
 };
+export const dateToUnix = (date: string | number | Date) => {
+  return date ? Math.floor(new Date(date).getTime() / 1000) : null;
+};
 
 export const changeFormat = (
   date: moment.MomentInput,

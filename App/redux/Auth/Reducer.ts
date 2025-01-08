@@ -84,10 +84,18 @@ export const authSlice = createSlice({
     successLogin: state => {
       state.loginState = true;
     },
+    successLogout: state => {
+      state.loginState = false;
+    },
   },
 });
 
-export const {increment, decrement, incrementByAmount, successLogin} =
-  authSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  successLogin,
+  successLogout,
+} = authSlice.actions;
 
 export default authSlice.reducer;

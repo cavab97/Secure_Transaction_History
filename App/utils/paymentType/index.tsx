@@ -2,19 +2,32 @@ import {StyleSheet, Text} from 'react-native';
 import {paymentMethod} from '../../model/transactionType';
 import React from 'react';
 
-export const handlePayment = (paymentMethod: paymentMethod, amount: number) => {
+export const handlePayment = (
+  paymentMethod: paymentMethod,
+  amount: number,
+  unMasked: boolean,
+) => {
   switch (paymentMethod) {
     case 'credit':
-      return (
-        <Text style={styles.itemAmountPlusFont}>+MYR{amount.toFixed(2)}</Text>
-      );
-
+      if (unMasked) {
+        return <Text style={styles.itemDefaultFont}>*****</Text>;
+      } else {
+        return (
+          <Text style={styles.itemAmountPlusFont}>+MYR{amount.toFixed(2)}</Text>
+        );
+      }
       break;
 
     case 'debit':
-      return (
-        <Text style={styles.itemAmountMinusFont}>-MYR{amount.toFixed(2)}</Text>
-      );
+      if (unMasked) {
+        return <Text style={styles.itemDefaultFont}>*****</Text>;
+      } else {
+        return (
+          <Text style={styles.itemAmountMinusFont}>
+            -MYR{amount.toFixed(2)}
+          </Text>
+        );
+      }
       break;
 
     default:

@@ -4,6 +4,7 @@ import {login} from '../../services/auth/api';
 import {successLogin} from './Reducer';
 import {LoginDetails} from '../../model/Login';
 import {showMessage} from 'react-native-flash-message';
+import {dateToUnix, unixToDate} from '../../utils/time';
 
 /**
  * @function loginAction
@@ -14,6 +15,13 @@ function* loginAction(action: any) {
   try {
     const token: LoginDetails[] = yield call(login, action.payload);
     yield put(successLogin());
+    showMessage({
+      message: `Last Login ${unixToDate(
+        dateToUnix(new Date()),
+        'DD MMM YYYY HH:mm:ss',
+      )}`,
+      type: 'success',
+    });
   } catch (error: any) {
     console.log(`error: ${error}`);
     const errorMessage =

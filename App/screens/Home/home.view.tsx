@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   StyleSheet,
+  Switch,
 } from 'react-native';
 import {matrix} from '../../components/helpers'; // Ensure this is typed correctly
 import {ScrollView} from 'react-native-gesture-handler';
@@ -15,6 +16,12 @@ import Icon from 'react-native-vector-icons/Feather';
 import {handlePayment} from '../../utils/paymentType';
 import {paymentMethod} from '../../model/transactionType';
 import {unixToDate} from '../../utils/time';
+import {showMessage} from 'react-native-flash-message';
+import TouchID from 'react-native-touch-id';
+import {optionalConfigObject} from '../../utils/fingerPrintSetting/data';
+import {handleBiometricError} from '../../utils/errorHandle/fingerprint';
+import {useDispatch} from 'react-redux';
+import {successLogout} from '../../redux/Auth/Reducer';
 
 // Define types for the props, if necessary
 interface HomeViewProps {
@@ -22,6 +29,32 @@ interface HomeViewProps {
 }
 
 const HomeView: React.FC<HomeViewProps> = () => {
+  const [isEnabled, setIsEnabled] = useState(true);
+  const dispatch = useDispatch();
+
+  const toggleSwitch = () => {
+    TouchID.authenticate('Please LogIn', optionalConfigObject)
+      .then((success: boolean) => {
+        if (success) {
+          setIsEnabled(previousState => !previousState);
+        } else {
+          showMessage({
+            message: 'You need to log in once',
+            type: 'danger',
+          });
+        }
+        // AlertIOS.alert('Authenticated Successfully');
+        console.log('Authenticated Successfully');
+      })
+      .catch((error: any) => {
+        dispatch(successLogout());
+        // showMessage({
+        //   message: 'You need to log in once',
+        //   type: 'danger',
+        // });
+        handleBiometricError(error);
+      });
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.headerContainer}>
@@ -39,9 +72,18 @@ const HomeView: React.FC<HomeViewProps> = () => {
       </View>
 
       <View style={styles.contentContainer}>
+        <View style={styles.maskedAmountButton}>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
         <ScrollView>
-          {mockFiles.reverse().map((item, index) => (
-            <View>
+          {mockFiles.map((item, index) => (
+            <View key={`${item.date}-${index}`}>
               <Text>{unixToDate(item?.date, 'DD MMM YYYY HH:mm:ss')}</Text>
               <View key={index} style={styles.itemContainer}>
                 <View style={styles.itemInnerLeftContainer}>
@@ -58,7 +100,11 @@ const HomeView: React.FC<HomeViewProps> = () => {
                   </Text>
                 </View>
                 <View style={styles.itemInnerRightContainer}>
-                  {handlePayment(item.type as paymentMethod, item.amount)}
+                  {handlePayment(
+                    item.type as paymentMethod,
+                    item.amount,
+                    isEnabled,
+                  )}
                   <Icon name="chevron-right" size={30} color="#900" />
                 </View>
               </View>
@@ -74,15 +120,14 @@ const HomeView: React.FC<HomeViewProps> = () => {
 const styles = StyleSheet.create({
   headerContainer: {
     alignItems: 'center',
-    backgroundColor: 'yellow',
   },
   profileImage: {
     width: matrix.horizontalScale(70),
     height: matrix.verticalScale(70),
   },
   transactionImage: {
-    width: matrix.horizontalScale(50),
-    height: matrix.verticalScale(50),
+    width: matrix.horizontalScale(40),
+    height: matrix.verticalScale(40),
     alignSelf: 'center',
   },
   nameText: {
@@ -95,7 +140,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'grey',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
@@ -106,7 +150,6 @@ const styles = StyleSheet.create({
     float: 'left',
     width: '100%',
     position: 'relative',
-    backgroundColor: 'red',
     flex: 1,
     flexDirection: 'row',
     alignContent: 'center',
@@ -120,22 +163,19 @@ const styles = StyleSheet.create({
     height: matrix.verticalScale(100),
   },
   itemInnerLeftContainer: {
-    backgroundColor: 'green',
     width: '20%',
     minWidth: '20%',
   },
   itemInnerCenterContainer: {
-    backgroundColor: 'green',
     width: '35%',
     minWidth: '30%',
   },
   itemInnerRightContainer: {
-    backgroundColor: 'purple',
     flexDirection: 'row',
     alignItems: 'center',
     width: '35%',
     minWidth: '30%',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
   },
 
   itemMethodTypeFont: {
@@ -146,6 +186,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     transform: [{skewX: '23deg'}],
   },
+  maskedAmountButton: {backgroundColor: '#00AEEF', alignItems: 'flex-end'},
 });
 
 export default HomeView;
