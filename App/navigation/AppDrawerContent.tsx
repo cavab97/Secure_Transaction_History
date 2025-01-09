@@ -7,7 +7,7 @@ import {
 import * as React from 'react';
 import {View} from 'react-native';
 
-export default AppDrawerContent = props => {
+export const AppDrawerContent = (props: any) => {
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={{flex: 1}}>
       {/*all of the drawer items*/}
@@ -16,10 +16,10 @@ export default AppDrawerContent = props => {
         {/* here's where you put your logout drawer item*/}
         <DrawerItem
           label="Log out"
-          //   onPress={() => {
-          //     // AsyncStorage.clear();
-          //     // props.navigation.replace('loginScreen');
-          //   }}
+          onPress={() => {
+            // AsyncStorage.clear();
+            // props.navigation.replace('loginScreen');
+          }}
           style={{flex: 1, justifyContent: 'flex-end'}}
         />
       </View>

@@ -1,6 +1,10 @@
 import React from 'react';
 
-const renderNode = (Component, content, defaultProps) => {
+const renderNode = (
+  Component: any,
+  content: {} | null | undefined,
+  defaultProps: React.JSX.IntrinsicAttributes,
+) => {
   if (content == null || content === false) {
     return null;
   }

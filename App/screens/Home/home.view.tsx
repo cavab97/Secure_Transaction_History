@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Switch,
+  RefreshControl,
 } from 'react-native';
 import {matrix} from '../../components/helpers'; // Ensure this is typed correctly
 import {ScrollView} from 'react-native-gesture-handler';
@@ -15,22 +16,31 @@ import {mockFiles} from '../../services/data/mockData';
 import Icon from 'react-native-vector-icons/Feather';
 import {handlePayment} from '../../utils/paymentType';
 import {paymentMethod} from '../../model/transactionType';
-import {unixToDate} from '../../utils/time';
+import {dateToUnix, unixToDate} from '../../utils/time';
 import {showMessage} from 'react-native-flash-message';
 import TouchID from 'react-native-touch-id';
 import {optionalConfigObject} from '../../utils/fingerPrintSetting/data';
 import {handleBiometricError} from '../../utils/errorHandle/fingerprint';
 import {useDispatch} from 'react-redux';
-import {successLogout} from '../../redux/Auth/Reducer';
+import {successLogout} from '../../redux/auth/Reducer';
+import {handleEyeSwitch} from '../../utils/eyeBalance';
+import normalize from '../../components/helpers/normalizeText';
 
-// Define types for the props, if necessary
-interface HomeViewProps {
-  // You can add props here if required, for now it's an empty object
-}
+interface HomeViewProps {}
 
 const HomeView: React.FC<HomeViewProps> = () => {
   const [isEnabled, setIsEnabled] = useState(true);
+  const [balanceHide, setBalanceHide] = useState(true);
+  const [pullRefreshing, setPullRefreshing] = React.useState(false);
+
   const dispatch = useDispatch();
+
+  const onRefresh = React.useCallback(() => {
+    setPullRefreshing(true);
+    setTimeout(() => {
+      setPullRefreshing(false);
+    }, 1000);
+  }, []);
 
   const toggleSwitch = () => {
     TouchID.authenticate('Please LogIn', optionalConfigObject)
@@ -43,7 +53,6 @@ const HomeView: React.FC<HomeViewProps> = () => {
             type: 'danger',
           });
         }
-        // AlertIOS.alert('Authenticated Successfully');
         console.log('Authenticated Successfully');
       })
       .catch((error: any) => {
@@ -55,33 +64,35 @@ const HomeView: React.FC<HomeViewProps> = () => {
         handleBiometricError(error);
       });
   };
+
+  const toggleBalanceSwitch = () => {
+    setBalanceHide(previousState => !previousState);
+  };
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={styles.headerContainer}>
-        <Image
-          source={require('../../assets/images/profile.jpg')}
-          resizeMode="contain"
-          style={styles.profileImage}
-          borderRadius={10}
-        />
-        <Text style={styles.nameText}>LEONG WEI MEN</Text>
-        <Text style={styles.jobTitleText}>Mobile Application Developer</Text>
-        <View>
-          <TouchableOpacity>{SocialMedia('fb')}</TouchableOpacity>
+      <View style={styles.introduceContainer}>
+        <Text style={styles.describeStyle}>Welcome back</Text>
+        <View style={styles.balanceContainer}>
+          {handleEyeSwitch(toggleBalanceSwitch, 300, balanceHide)}
         </View>
       </View>
 
       <View style={styles.contentContainer}>
         <View style={styles.maskedAmountButton}>
-          <Switch
-            trackColor={{false: '#767577', true: '#81b0ff'}}
-            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
+          <Text style={styles.topicFont}>Transaction History</Text>
+          <TouchableOpacity
+            onPress={() => {
+              toggleSwitch();
+            }}>
+            <Text style={styles.unlockFont}>Tap To View</Text>
+          </TouchableOpacity>
         </View>
-        <ScrollView>
+        <ScrollView
+          nestedScrollEnabled={true}
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={pullRefreshing} onRefresh={onRefresh} />
+          }>
           {mockFiles.map((item, index) => (
             <View key={`${item.date}-${index}`}>
               <Text>{unixToDate(item?.date, 'DD MMM YYYY HH:mm:ss')}</Text>
@@ -108,6 +119,11 @@ const HomeView: React.FC<HomeViewProps> = () => {
                   <Icon name="chevron-right" size={30} color="#900" />
                 </View>
               </View>
+              {index + 1 === (mockFiles.length ?? 0) && (
+                <View style={styles.footer}>
+                  <Text>End Here</Text>
+                </View>
+              )}
             </View>
           ))}
         </ScrollView>
@@ -132,10 +148,10 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: normalize(20),
   },
   jobTitleText: {
-    fontSize: 15,
+    fontSize: normalize(15),
   },
   contentContainer: {
     flex: 1,
@@ -144,7 +160,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
   },
   text: {
-    fontSize: 42,
+    fontSize: normalize(42),
   },
   itemContainer: {
     float: 'left',
@@ -179,14 +195,45 @@ const styles = StyleSheet.create({
   },
 
   itemMethodTypeFont: {
-    fontSize: 13,
+    fontSize: normalize(13),
     fontWeight: 'bold',
   },
   itemDescriptionFont: {
     fontStyle: 'italic',
     transform: [{skewX: '23deg'}],
   },
-  maskedAmountButton: {backgroundColor: '#00AEEF', alignItems: 'flex-end'},
+  maskedAmountButton: {flexDirection: 'row', justifyContent: 'space-between'},
+  balanceStyle: {},
+  balanceContainer: {
+    alignContent: 'flex-start',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  introduceContainer: {
+    alignContent: 'flex-start',
+    padding: 5,
+  },
+  describeStyle: {
+    // backgroundColor: 'grey',
+    alignContent: 'flex-start',
+    fontSize: normalize(15),
+    fontWeight: 'bold',
+  },
+  scrollView: {
+    paddingVertical: 20,
+  },
+  footer: {
+    alignItems: 'center',
+  },
+  unlockFont: {
+    color: 'blue',
+  },
+  topicFont: {
+    fontSize: normalize(15),
+    fontWeight: 'bold',
+  },
 });
 
 export default HomeView;

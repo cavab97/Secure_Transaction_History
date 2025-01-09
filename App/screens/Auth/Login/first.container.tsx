@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginView from './first.view';
 
-function LoginContainer(props) {
+function LoginContainer(props: any) {
   return (
     <>
       <LoginView {...props} />

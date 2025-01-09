@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {View, TextInput, Text} from 'react-native';
-import {loginRequest} from '../../../redux/Auth/Actions';
+import {loginRequest} from '../../../redux/auth/Actions';
 import BottonView from '../../../components/atom/Button/button.view';
 import Button from '../../../components/molecules/LoginButton';
 import LoginInput from '../../../components/molecules/LoginInput';

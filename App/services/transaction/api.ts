@@ -1,11 +1,13 @@
 import axios, {AxiosError} from 'axios';
 import {JSON_PLACEHOLDER_FAKE_API_MOCK} from '../index';
 import AxiosMockAdapter from 'axios-mock-adapter';
+import {mockFiles} from '../data/mockData';
+import {transactionData} from '../../model/transactionType';
 
 /**
- * @function getPost
- * @description Call getPost Endpoint to get posts
- * @returns Posts
+ * @function getTransaction
+ * @description Call getTransaction Endpoint to get Transactions
+ * @returns Transactions
  */
 
 // Create a new Axios mock instance
@@ -13,7 +15,9 @@ const mock = new AxiosMockAdapter(axios);
 
 // Mock the GET request to return mockFiles data
 mock.onGet('/mock-data').reply(200, mockFiles);
-export const getPost = async (payload: any): Promise<Post[]> => {
+export const getTransaction = async (
+  payload: any,
+): Promise<transactionData[]> => {
   try {
     const response = await axios.get('/mock-data'); // Request to the mocked endpoint
     return response.data;
@@ -29,9 +33,3 @@ export const getPost = async (payload: any): Promise<Post[]> => {
     throw new Error('An unknown error occurred');
   }
 };
-
-// Define a function to fetch posts (Example)
-// const getPost = async (payload: any): Promise<Post[]> => {
-//   const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-//   return await response.json();
-// };

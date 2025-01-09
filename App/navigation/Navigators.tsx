@@ -3,12 +3,13 @@ import {useSelector} from 'react-redux';
 import {NavigationContainer} from '@react-navigation/native';
 import ProtectedRoutes from './ProtectedRoutes';
 import {enableScreens} from 'react-native-screens';
+import {RootState} from '../redux/store';
 import AuthRoutes from './AuthRoutes';
 
 enableScreens();
 
 function Navigators() {
-  const authState = useSelector(state => state.auths);
+  const authState = useSelector((state: RootState) => state.auths);
   console.log('authState');
   console.log(authState);
 

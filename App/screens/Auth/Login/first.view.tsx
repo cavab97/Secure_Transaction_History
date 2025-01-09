@@ -16,10 +16,6 @@ function LoginView({navigation}: any) {
   useEffect(() => {}, []);
   return (
     <View style={{backgroundColor: 'white', height: '100%'}}>
-      {/* <BottonView onPress={() => signIn({username, password})}>
-        <Text style={{color: 'black'}}>Sign in</Text>
-        <Text style={{color: 'black'}}>222222</Text>
-      </BottonView> */}
       <StatusBar
         animated={true}
         backgroundColor="#61dafb"
@@ -33,7 +29,7 @@ function LoginView({navigation}: any) {
         autoPlay={true}
         loop={false}
       />
-      
+
       <View
         style={{
           flexDirection: 'column',

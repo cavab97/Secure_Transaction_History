@@ -1,8 +1,8 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import {View, Text} from 'react-native';
-import {loginRequest} from '../../../redux/Auth/Actions';
-import {successLogin} from '../../../redux/Auth/Reducer';
+import {loginRequest} from '../../../redux/auth/Actions';
+import {successLogin} from '../../../redux/auth/Reducer';
 import BottonView from '../../../components/atom/Button/button.view';
 import Button from '../../../components/molecules/LoginButton';
 import LoginInput from '../../../components/molecules/LoginInput';
@@ -35,42 +35,16 @@ function LoginView({navigation}: any) {
       passcodeFallback: false, // if true is passed, itwill allow isSupported to return an error if the device is not enrolled in touch id/face id etc. Otherwise, it will just tell you what method is supported, even if the user is not enrolled.  (default false)
     };
 
-    TouchID.isSupported(optionalConfigObjects)
-      .then(biometryType => {
-        // Success code
-        if (biometryType === 'FaceID') {
-          console.log('FaceID is supported.');
-        } else {
-          console.log('TouchID is supported.');
-        }
-      })
-      .catch(error => {
-        // Failure code
-        console.log(error);
-      });
-
     TouchID.authenticate('Please LogIn', optionalConfigObject)
       .then((success: boolean) => {
         if (success) {
           dispatch(loginRequest({username, password}));
-          // this.login();
-
-          // this.setState(
-          //   {
-          //     license_number: licenseNumber,
-          //     password: pwboat,
-          //   },
-          //   () => {
-          //     this.handleLogin();
-          //   },
-          // );
         } else {
           showMessage({
             message: 'You need to log in once',
             type: 'danger',
           });
         }
-        // AlertIOS.alert('Authenticated Successfully');
         console.log('Authenticated Successfully');
       })
       .catch((error: any) => {

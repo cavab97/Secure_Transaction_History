@@ -2,7 +2,7 @@
 
 const customIcons = {};
 
-export const MainAnimation = title => {
+export const MainAnimation = (title: string) => {
   //   customIcons[id] = customIcon;
 
   switch (title) {

@@ -1,10 +1,10 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED} from './Constants';
 import {login} from '../../services/auth/api';
-import {successLogin} from './Reducer';
 import {LoginDetails} from '../../model/Login';
 import {showMessage} from 'react-native-flash-message';
 import {dateToUnix, unixToDate} from '../../utils/time';
+import {successLogin} from './Reducer';
 
 /**
  * @function loginAction

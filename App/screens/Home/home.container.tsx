@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeView from './home.view';
 
-function HomeContainer(props) {
+function HomeContainer(props: any): React.JSX.Element {
   return <HomeView {...props} />;
 }
 

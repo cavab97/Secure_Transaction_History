@@ -1,5 +1,5 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {getPost} from '../../services/Post/api';
+import {getTransaction} from '../../services/transaction/api';
 import {postError, postSuccess} from './Actions';
 import {POST_REQUEST} from './Constants';
 import {Post, PostAction} from '../../model/Posts';
@@ -14,7 +14,7 @@ import {Post, PostAction} from '../../model/Posts';
 function* postAction(action: PostAction): Generator<any, void, Post[]> {
   try {
     // Yield the call to getPost with the action payload
-    const posts: Post[] = yield call(getPost, action.payload);
+    const posts: Post[] = yield call(getTransaction, action.payload);
 
     // Dispatch the success action with the posts data
     yield put(postSuccess(posts));

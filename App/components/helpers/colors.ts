@@ -2,9 +2,7 @@
 
 const customIcons = {};
 
-export const MainColour = boolean => {
-  //   customIcons[id] = customIcon;
-
+export const MainColour = (boolean: boolean) => {
   switch (boolean) {
     case true:
       return {primaryColour: '#BF4F74', secondaryColour: 'white'}; //red

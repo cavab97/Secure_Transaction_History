@@ -3,10 +3,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {ABOUT_ROUTE, HOME_ROUTE, SIGNOUT_ROUTE, POST_ROUTE} from './Constants';
 import HomeContainer from '../screens/home/home.container';
-import AboutContainer from '../screens/about/about.container';
-import PostContainer from '../screens/posts/post.container';
 import LoginContainer from '../screens/auth/login/first.container';
-import AppDrawerContent from './AppDrawerContent';
+import {AppDrawerContent} from './AppDrawerContent';
 const Drawer = createDrawerNavigator();
 
 function ProtectedRoutes() {
@@ -21,16 +19,7 @@ function ProtectedRoutes() {
         component={HomeContainer}
         options={{drawerLabel: 'Home'}}
       />
-      <Drawer.Screen
-        name={POST_ROUTE}
-        component={PostContainer}
-        options={{drawerLabel: 'Post'}}
-      />
-      <Drawer.Screen
-        name={ABOUT_ROUTE}
-        component={AboutContainer}
-        options={{drawerLabel: 'About'}}
-      />
+
       {/* <Drawer.Screen
         name={SIGNOUT_ROUTE}
         component={AboutContainer}

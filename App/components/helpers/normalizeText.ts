@@ -4,11 +4,11 @@
 // Some code taken from https://jsfiddle.net/97ty7yjk/ &
 // https://stackoverflow.com/questions/34837342/font-size-on-iphone-6s-plus
 
-import { PixelRatio, Dimensions } from "react-native";
+import {PixelRatio, Dimensions} from 'react-native';
 
 const pixelRatio = PixelRatio.get();
-const deviceHeight = Dimensions.get("window").height;
-const deviceWidth = Dimensions.get("window").width;
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 // -- Testing Only --
 // const fontScale = PixelRatio.getFontScale();
@@ -19,7 +19,7 @@ const deviceWidth = Dimensions.get("window").width;
 // console.log('normalizeText getDW ->', deviceWidth);
 // console.log('normalizeText getPSFLS ->', layoutSize);
 
-const normalize = (size) => {
+const normalize = (size: number) => {
   if (pixelRatio >= 2 && pixelRatio < 3) {
     // iphone 5s and older Androids
     if (deviceWidth < 360) {

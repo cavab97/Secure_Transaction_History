@@ -6,7 +6,7 @@ import LoginContainer from '../screens/auth/login/first.container';
 import SigninView from '../screens/auth/signIn/signIn.view';
 
 const Stack = createNativeStackNavigator();
-function AuthRoutes({loading, data, error}) {
+function AuthRoutes({loading, data, error}: any) {
   return (
     <Stack.Navigator>
       {loading === true ? (

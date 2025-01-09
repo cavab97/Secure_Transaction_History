@@ -11,13 +11,16 @@ import OcticonIcon from 'react-native-vector-icons/Octicons';
 import SimpleLineIcon from 'react-native-vector-icons/SimpleLineIcons';
 import ZocialIcon from 'react-native-vector-icons/Zocial';
 
-const customIcons = {};
-
-export const registerCustomIconType = (id, customIcon) => {
-  customIcons[id] = customIcon;
+export const registerCustomIconType = (
+  id: string | number,
+  customIcon: any,
+) => {
+  {
+  }
+  [id] = customIcon;
 };
 
-export default type => {
+export default (type: string) => {
   switch (type) {
     case 'zocial':
       return ZocialIcon;
@@ -44,8 +47,8 @@ export default type => {
     case 'antdesign':
       return AntIcon;
     default:
-      if (Object.prototype.hasOwnProperty.call(customIcons, type)) {
-        return customIcons[type];
+      if (Object.prototype.hasOwnProperty.call({}, type)) {
+        return {}[type];
       }
       return MaterialIcon;
   }
