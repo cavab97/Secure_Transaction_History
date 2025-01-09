@@ -16,7 +16,7 @@ const initialState: any = {
  */
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {TransactionData} from '../../model/transactionType';
+import {TransactionData} from '../../model/TransactionType';
 export const transactionSlice = createSlice({
   name: 'transaction',
   initialState,

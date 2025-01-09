@@ -1,6 +1,6 @@
 import {ImageSourcePropType} from 'react-native';
 
-export interface LoginButtonProps {
+export interface ButtonProps {
   Title: string;
   borderBottomRightRadius?: number;
   borderBottomLeftRadius?: number;

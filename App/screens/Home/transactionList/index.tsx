@@ -2,16 +2,19 @@ import {View, Text, Image, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {unixToDate} from '../../../utils/time';
 import {handlePayment} from '../../../utils/paymentType';
-import {TransactionData, paymentMethod} from '../../../model/transactionType';
+import {TransactionData, paymentMethod} from '../../../model/TransactionType';
 import {styles} from '../styles';
 import {LoaderTypeComponent} from '../../../components/molecules/ContentLoader';
 import React from 'react';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TRANSACTION_ROUTE} from '../../../navigation/Constants';
 
 const TransactionList = (
   data: TransactionData[],
   isLoading: boolean,
   isEnabled: boolean,
   loader: string,
+  navigation: any,
 ) => {
   if (isLoading) {
     return (
@@ -30,7 +33,9 @@ const TransactionList = (
   return (
     <View>
       {data.map((item: TransactionData, index: number) => (
-        <View key={`${item.date}-${index}`}>
+        <TouchableOpacity
+          key={`${item.date}-${index}`}
+          onPress={() => navigation.navigate(TRANSACTION_ROUTE)}>
           <Text>{unixToDate(item?.date, 'DD MMM YYYY HH:mm:ss')}</Text>
           <View style={styles.itemContainer}>
             <View style={styles.itemInnerLeftContainer}>
@@ -60,7 +65,7 @@ const TransactionList = (
               <Text>End Here</Text>
             </View>
           )}
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );

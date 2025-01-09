@@ -2,7 +2,7 @@ import axios, {AxiosError} from 'axios';
 import {JSON_PLACEHOLDER_FAKE_API_MOCK} from '../index';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import {mockFiles} from '../data/mockData';
-import {TransactionData} from '../../model/transactionType';
+import {TransactionData} from '../../model/TransactionType';
 
 /**
  * @function getTransaction

@@ -5,6 +5,7 @@ import ProtectedRoutes from './ProtectedRoutes';
 import {enableScreens} from 'react-native-screens';
 import {RootState} from '../redux/store';
 import AuthRoutes from './AuthRoutes';
+import {navigationRef} from './NavigationService';
 
 enableScreens();
 
@@ -15,7 +16,7 @@ function Navigators() {
 
   const {loading, error, data, loginState} = authState;
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       {!loginState ? (
         <AuthRoutes loading={loading} data={data} error={error} />
       ) : (

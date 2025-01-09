@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import {getTransaction} from '../../services/transaction/api';
 import {TRANSACTION_REQUEST} from './Constants';
-import {TransactionData} from '../../model/transactionType';
+import {TransactionData} from '../../model/TransactionType';
 import {transactionFailed, transactionSuccess} from './Reducer';
 
 /**

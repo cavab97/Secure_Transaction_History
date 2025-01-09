@@ -9,7 +9,6 @@ import LoginInput from '../../../components/molecules/LoginInput';
 import {TextInput} from 'react-native-paper';
 import LottieView from 'lottie-react-native';
 import {MainAnimation} from '../../../components/helpers/index';
-import {HOME_ROUTE} from '../../../navigation/Constants';
 import TouchID from 'react-native-touch-id';
 import {showMessage} from 'react-native-flash-message';
 import {optionalConfigObject} from '../../../utils/fingerPrintSetting/data';

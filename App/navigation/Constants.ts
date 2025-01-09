@@ -1,9 +1,10 @@
 export const LOGIN_ROUTE = 'Login';
 export const SIGNUP_ROUTE = 'Signup';
 export const SIGNOUT_ROUTE = 'Signout';
-export const SIGNIN_ROUTE = 'Signin';
+export const SIGNIN_ROUTE = 'SIGNIN_ROUTE';
 export const RESET_ROUTE = 'Reset';
 export const FORGET_ROUTE = 'Forget';
 export const HOME_ROUTE = 'Home';
 export const ABOUT_ROUTE = 'About';
 export const POST_ROUTE = 'Post';
+export const TRANSACTION_ROUTE = 'Transaction';

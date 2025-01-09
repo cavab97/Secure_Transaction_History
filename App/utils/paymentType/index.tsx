@@ -1,5 +1,5 @@
 import {StyleSheet, Text} from 'react-native';
-import {paymentMethod} from '../../model/transactionType';
+import {paymentMethod} from '../../model/TransactionType';
 import React from 'react';
 
 export const handlePayment = (

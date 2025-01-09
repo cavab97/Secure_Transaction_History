@@ -24,10 +24,10 @@ import {useSelector} from 'react-redux';
 import {styles} from './styles';
 import TransactionList from './transactionList';
 import React from 'react';
+import {checkConnection} from '../../components/helpers/checkConnection';
+import NavigationService from '../../navigation/NavigationService';
 
-interface HomeViewProps {}
-
-const HomeView: React.FC<HomeViewProps> = () => {
+const HomeView: React.FC = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   const [balanceHide, setBalanceHide] = useState(true);
   const [pullRefreshing, setPullRefreshing] = React.useState(false);
@@ -39,12 +39,18 @@ const HomeView: React.FC<HomeViewProps> = () => {
   const {loginState} = authState;
   const {data, loading} = transactionState;
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = React.useCallback(async () => {
     setPullRefreshing(true);
     try {
-      console.log(`onRefresh run`);
-
-      dispatch(transactionRequest());
+      const internetStatus = await checkConnection();
+      if (internetStatus == true) {
+        dispatch(transactionRequest());
+      } else {
+        showMessage({
+          message: 'No network connection.',
+          type: 'danger', // You can change the type to 'success', 'info', or 'warning' depending on your message
+        });
+      }
     } catch (error) {
       console.log(`onRefresh error${error}`);
     }
@@ -120,7 +126,7 @@ const HomeView: React.FC<HomeViewProps> = () => {
           refreshControl={
             <RefreshControl refreshing={pullRefreshing} onRefresh={onRefresh} />
           }>
-          {TransactionList(data, loading, isEnabled, 'list')}
+          {TransactionList(data, loading, isEnabled, 'list', NavigationService)}
         </ScrollView>
       </View>
     </SafeAreaView>

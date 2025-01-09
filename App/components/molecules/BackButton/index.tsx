@@ -3,7 +3,7 @@ import React from 'react';
 import Botton from '../../atom/Button/button.view';
 import Text from '../../atom/Text/text.view';
 import {ButtonProps} from '../../../model/Component';
-function LoginButton({
+function Button({
   Title,
   borderBottomRightRadius = 0,
   borderBottomLeftRadius = 0,
@@ -39,4 +39,4 @@ function LoginButton({
   );
 }
 
-export default LoginButton;
+export default Button;

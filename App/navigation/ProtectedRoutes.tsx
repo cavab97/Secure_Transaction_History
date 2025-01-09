@@ -1,11 +1,31 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import {ABOUT_ROUTE, HOME_ROUTE, SIGNOUT_ROUTE, POST_ROUTE} from './Constants';
+import {TRANSACTION_ROUTE, HOME_ROUTE, SIGNOUT_ROUTE} from './Constants';
 import HomeContainer from '../screens/home/home.container';
 import LoginContainer from '../screens/auth/login/first.container';
 import {AppDrawerContent} from './AppDrawerContent';
+import TransactionContainer from '../screens/transactionDetails/transaction.container';
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+
+const TransactionStackNavigation: any = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={HOME_ROUTE}
+        component={HomeContainer}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={TRANSACTION_ROUTE}
+        component={TransactionContainer}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+};
 
 function ProtectedRoutes() {
   return (
@@ -16,15 +36,9 @@ function ProtectedRoutes() {
       }}>
       <Drawer.Screen
         name={HOME_ROUTE}
-        component={HomeContainer}
+        component={TransactionStackNavigation}
         options={{drawerLabel: 'Home'}}
       />
-
-      {/* <Drawer.Screen
-        name={SIGNOUT_ROUTE}
-        component={AboutContainer}
-        options={{drawerLabel: 'Logout'}}
-      /> */}
     </Drawer.Navigator>
   );
 }

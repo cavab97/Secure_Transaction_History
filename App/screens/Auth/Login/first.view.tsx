@@ -8,8 +8,9 @@ import Button from '../../../components/molecules/LoginButton';
 import LottieView from 'lottie-react-native';
 import {MainAnimation} from '../../../components/helpers/index';
 import type {StatusBarStyle} from 'react-native';
+import NavigationService from '../../../navigation/NavigationService';
 const STYLES = ['default', 'dark-content', 'light-content'] as const;
-function LoginView({navigation}: any) {
+function LoginView() {
   const [statusBarStyle, setStatusBarStyle] = useState<StatusBarStyle>(
     STYLES[0],
   );
@@ -42,7 +43,7 @@ function LoginView({navigation}: any) {
           alignItems: 'center',
         }}>
         <Button
-          onPress={() => navigation.navigate(SIGNIN_ROUTE)}
+          onPress={() => NavigationService.navigate(SIGNIN_ROUTE)}
           Title={'SIGN IN'}
           borderBottomLeftRadius={15}
           borderTopLeftRadius={15}
