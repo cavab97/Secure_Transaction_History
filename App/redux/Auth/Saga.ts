@@ -1,10 +1,10 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILED} from './Constants';
 import {login} from '../../services/auth/api';
 import {LoginDetails} from '../../model/Login';
 import {showMessage} from 'react-native-flash-message';
 import {dateToUnix, unixToDate} from '../../utils/time';
 import {successLogin} from './Reducer';
+import {LOGIN_REQUEST} from './Constants';
 
 /**
  * @function loginAction
@@ -25,7 +25,7 @@ function* loginAction(action: any) {
   } catch (error: any) {
     console.log(`error: ${error}`);
     const errorMessage =
-      error instanceof Error ? error.message : 'Unknown error occurred';
+      error instanceof Error ? error.message : 'Unknown error occurred!';
     showMessage({
       message: errorMessage,
       type: 'danger',

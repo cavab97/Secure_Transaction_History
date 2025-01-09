@@ -2,7 +2,7 @@ import axios, {AxiosError} from 'axios';
 import {JSON_PLACEHOLDER_FAKE_API_MOCK} from '../index';
 import AxiosMockAdapter from 'axios-mock-adapter';
 import {mockFiles} from '../data/mockData';
-import {transactionData} from '../../model/transactionType';
+import {TransactionData} from '../../model/transactionType';
 
 /**
  * @function getTransaction
@@ -10,15 +10,13 @@ import {transactionData} from '../../model/transactionType';
  * @returns Transactions
  */
 
-// Create a new Axios mock instance
-const mock = new AxiosMockAdapter(axios);
-
-// Mock the GET request to return mockFiles data
-mock.onGet('/mock-data').reply(200, mockFiles);
-export const getTransaction = async (
-  payload: any,
-): Promise<transactionData[]> => {
+export const getTransaction = async (): Promise<TransactionData[]> => {
   try {
+    // Create a new Axios mock instance
+    const mock = new AxiosMockAdapter(axios);
+
+    // Mock the GET request to return mockFiles data
+    mock.onGet('/mock-data').reply(200, mockFiles);
     const response = await axios.get('/mock-data'); // Request to the mocked endpoint
     return response.data;
   } catch (error) {

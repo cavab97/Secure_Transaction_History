@@ -14,6 +14,7 @@ import TouchID from 'react-native-touch-id';
 import {showMessage} from 'react-native-flash-message';
 import {optionalConfigObject} from '../../../utils/fingerPrintSetting/data';
 import {handleBiometricError} from '../../../utils/errorHandle/fingerprint';
+import {checkConnection} from '../../../components/helpers/checkConnection';
 
 function LoginView({navigation}: any) {
   const [username, setUsername] = React.useState('john_doe');
@@ -30,15 +31,10 @@ function LoginView({navigation}: any) {
   };
 
   const pressHandler = async () => {
-    const optionalConfigObjects = {
-      unifiedErrors: false, // use unified error messages (default false)
-      passcodeFallback: false, // if true is passed, itwill allow isSupported to return an error if the device is not enrolled in touch id/face id etc. Otherwise, it will just tell you what method is supported, even if the user is not enrolled.  (default false)
-    };
-
     TouchID.authenticate('Please LogIn', optionalConfigObject)
       .then((success: boolean) => {
         if (success) {
-          dispatch(loginRequest({username, password}));
+          signIn(username, password);
         } else {
           showMessage({
             message: 'You need to log in once',
@@ -48,13 +44,23 @@ function LoginView({navigation}: any) {
         console.log('Authenticated Successfully');
       })
       .catch((error: any) => {
-        // showMessage({
-        //   message: 'You need to log in once',
-        //   type: 'danger',
-        // });
         handleBiometricError(error);
       });
   };
+
+  const pressLogin = async () => {
+    // check connection before trigger api
+    const internetStatus = await checkConnection();
+    if (internetStatus == true) {
+      signIn(username, password);
+    } else {
+      showMessage({
+        message: 'No network connection.',
+        type: 'danger', // You can change the type to 'success', 'info', or 'warning' depending on your message
+      });
+    }
+  };
+
   return (
     <View>
       <LottieView
@@ -107,7 +113,7 @@ function LoginView({navigation}: any) {
           width={50}
           borderWidth={1}></Button>
         <Button
-          onPress={() => dispatch(loginRequest({username, password}))}
+          onPress={() => pressLogin()}
           marginTop={10}
           borderBottomRightRadius={15}
           Title={'LOGIN'}

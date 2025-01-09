@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import normalize from '../../components/helpers/normalizeText';
+import React from 'react';
 
 export const handleEyeSwitch = (
   press: () => void,

@@ -13,14 +13,16 @@ import {showMessage} from 'react-native-flash-message';
  */
 
 // Create a new Axios mock instance
-const mock = new AxiosMockAdapter(axios);
 
 // Mock the GET request to return mockFiles data
-mock.onGet('/auth').reply(200, loginDetails);
 
 export const login = async (params: LoginModel) => {
   try {
-    const response = await axios.get('/auth'); // Request to the mocked endpoint
+    const mock = new AxiosMockAdapter(axios);
+
+    mock.onGet('/auth').reply(200, loginDetails);
+
+    const response = await axios.get('/auth');
 
     if (
       params.username === response.data.username &&
@@ -31,14 +33,12 @@ export const login = async (params: LoginModel) => {
       mock.onGet('/authFailed').reply(200, loginFailed); //
 
       const responseError = await axios.get('/authFailed'); // Request to the mocked endpoint
-      console.log(responseError.data.error.message);
 
       throw new Error(responseError.data.error.message);
     }
   } catch (error) {
     if (error instanceof AxiosError) {
       const errorMessage = error.response?.data?.message || error.message;
-
       // Check if it's a connection or network-related error
       if (error.code === 'ECONNABORTED') {
         showMessage({

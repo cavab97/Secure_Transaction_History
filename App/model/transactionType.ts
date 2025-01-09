@@ -1,5 +1,5 @@
 export type paymentMethod = 'debit' | 'credit';
-export interface transactionData {
+export interface TransactionData {
   amount: number;
   date: string; // You could also use `Date` if you want to store as a Date object
   description: string;

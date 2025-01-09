@@ -1,6 +1,6 @@
 import {Image} from 'react-native';
-import React from 'react';
 import {matrix} from '../../../components/helpers';
+import React from 'react';
 export default function socialMedia(shortForm: any) {
   switch (shortForm) {
     case 'fb':

@@ -10,20 +10,8 @@ function SignupView() {
   const [password, setPassword] = React.useState('');
   const dispatch = useDispatch();
 
-  const signIn = (username, password) => {
-    dispatch(
-      loginRequest({
-        username,
-        password,
-      }),
-    );
-  };
   return (
     <View>
-      {/* <BottonView onPress={() => signIn({username, password})}>
-        <Text style={{color: 'black'}}>Sign in</Text>
-        <Text style={{color: 'black'}}>222222</Text>
-      </BottonView> */}
       <LoginInput
         placeholder="Username"
         value={username}
