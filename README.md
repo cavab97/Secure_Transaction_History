@@ -49,6 +49,5 @@ Before you begin, ensure you have the following installed:
 To start the project on your local machine, use the following command:
 
 ```bash
-npx react-native run-android  # For Android
-npx react-native run-ios      # For iOS (macOS only)
+npm run android  # For Android
 ```
