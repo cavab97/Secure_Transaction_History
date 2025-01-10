@@ -1,4 +1,4 @@
-package com.rnboilerplatecli;
+package com.RNtransactionHistory;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

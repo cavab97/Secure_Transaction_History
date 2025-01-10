@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.rnboilerplatecli"
+    namespace "com.RNtransactionHistory"
     defaultConfig {
-        applicationId "com.rnboilerplatecli"
+        applicationId "com.RNtransactionHistory"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

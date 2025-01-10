@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "RNBoilerplateCLI.app"
-               BlueprintName = "RNBoilerplateCLI"
-               ReferencedContainer = "container:RNBoilerplateCLI.xcodeproj">
+               BuildableName = "RNtransactionHistory.app"
+               BlueprintName = "RNtransactionHistory"
+               ReferencedContainer = "container:RNtransactionHistory.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "RNBoilerplateCLITests.xctest"
-               BlueprintName = "RNBoilerplateCLITests"
-               ReferencedContainer = "container:RNBoilerplateCLI.xcodeproj">
+               BuildableName = "RNtransactionHistoryTests.xctest"
+               BlueprintName = "RNtransactionHistoryTests"
+               ReferencedContainer = "container:RNtransactionHistory.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "RNBoilerplateCLI.app"
-            BlueprintName = "RNBoilerplateCLI"
-            ReferencedContainer = "container:RNBoilerplateCLI.xcodeproj">
+            BuildableName = "RNtransactionHistory.app"
+            BlueprintName = "RNtransactionHistory"
+            ReferencedContainer = "container:RNtransactionHistory.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "RNBoilerplateCLI.app"
-            BlueprintName = "RNBoilerplateCLI"
-            ReferencedContainer = "container:RNBoilerplateCLI.xcodeproj">
+            BuildableName = "RNtransactionHistory.app"
+            BlueprintName = "RNtransactionHistory"
+            ReferencedContainer = "container:RNtransactionHistory.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

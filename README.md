@@ -17,6 +17,7 @@ securePassword123
 - **Node.js**: v15.14.0
 - **npm**: v7.7.6
 - **React Native**: v0.71.8
+- **Java**: openjdk version "11.0.21"
 
 ## Getting Started
 
