@@ -11,8 +11,6 @@ enableScreens();
 
 function Navigators() {
   const authState = useSelector((state: RootState) => state.auths);
-  console.log('authState');
-  console.log(authState);
 
   const {loading, error, data, loginState} = authState;
   return (

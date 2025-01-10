@@ -54,8 +54,11 @@ const HomeView: React.FC = () => {
           type: MessageType.Danger,
         });
       }
-    } catch (error) {
-      console.log(`onRefresh error${error}`);
+    } catch (error: any) {
+      showMessage({
+        message: error.toString(),
+        type: MessageType.Danger,
+      });
     }
 
     setTimeout(() => {

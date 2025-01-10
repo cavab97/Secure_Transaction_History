@@ -25,9 +25,7 @@ export async function getData({key}: any): Promise<any> {
       resolve({value}); // Return the parsed value
     } catch (e) {
       reject({error: e}); // If there is an error, reject the promise with the error
-      console.log('Error fetching data', e);
     }
-    console.log('Down');
   });
 }
 

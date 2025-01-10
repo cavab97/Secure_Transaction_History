@@ -21,7 +21,6 @@ interface TransactionViewProps {
 
 const TransactionView: React.FC<TransactionViewProps> = ({route}) => {
   const {amount, date, description, type} = route.params;
-  console.log(`TransactionViewProps route${JSON.stringify(route.params)}`);
   return (
     <SafeAreaView>
       <View style={styles.headerContainer}>

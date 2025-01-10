@@ -98,7 +98,10 @@ export function handleBiometricError(error: BiometricError) {
 
         break;
       default:
-        console.log('An unknown error occurred:', error.message);
+        showMessage({
+          message: 'An unknown error occurred:',
+          type: MessageType.Danger,
+        });
     }
   }
 }

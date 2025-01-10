@@ -24,7 +24,6 @@ function* loginAction(action: any) {
       type: 'success',
     });
   } catch (error: any) {
-    console.log(`error: ${error}`);
     const errorMessage =
       error instanceof Error ? error.message : 'Unknown error occurred!';
     showMessage({
