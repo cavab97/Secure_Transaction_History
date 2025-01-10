@@ -1,6 +1,16 @@
-# Project Name
+# Frontend Engineer Take-Home Assignment
 
 A brief description of your project, its purpose, and key features.
+
+## Login Information
+
+### Email
+
+john_doe@gmail.com
+
+### Password
+
+securePassword123
 
 ## Technologies Used
 
