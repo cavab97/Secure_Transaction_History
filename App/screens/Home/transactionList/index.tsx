@@ -1,4 +1,4 @@
-import {View, Text, Image, ActivityIndicator} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {unixToDate} from '../../../utils/time';
 import {handlePayment} from '../../../utils/paymentType';
@@ -8,14 +8,28 @@ import {LoaderTypeComponent} from '../../../components/molecules/ContentLoader';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {TRANSACTION_ROUTE} from '../../../navigation/Constants';
+import {checkConnection} from '../../../components/helpers/checkConnection';
+import {showMessage} from 'react-native-flash-message';
+import {MessageType} from '../../../components/helpers/enum';
 
-const TransactionList = (
-  data: TransactionData[],
-  isLoading: boolean,
-  isEnabled: boolean,
-  loader: string,
-  navigation: any,
-) => {
+interface TransactionListProps {
+  data: TransactionData[];
+  isLoading: boolean;
+  isEnabled: boolean;
+  loader: 'list';
+  navigation: {
+    navigate: (name: string, params?: any) => void;
+    goBack: () => void;
+  };
+}
+
+const TransactionList: React.FC<TransactionListProps> = ({
+  data,
+  isLoading,
+  isEnabled,
+  loader,
+  navigation,
+}) => {
   if (isLoading) {
     return (
       <View style={styles.noDataContainer}>{LoaderTypeComponent(loader)}</View>
@@ -29,14 +43,35 @@ const TransactionList = (
       </View>
     );
   }
+  const pressHandler = async (item: TransactionData) => {
+    const {amount, date, description, type} = item;
+    const internetStatus = await checkConnection();
+    if (internetStatus == true) {
+      navigation.navigate(TRANSACTION_ROUTE, {
+        amount,
+        date,
+        description,
+        type,
+      });
+    } else {
+      showMessage({
+        message: 'No network connection.',
+        type: MessageType.Danger,
+      });
+    }
+  };
 
   return (
     <View>
       {data.map((item: TransactionData, index: number) => (
         <TouchableOpacity
           key={`${item.date}-${index}`}
-          onPress={() => navigation.navigate(TRANSACTION_ROUTE)}>
-          <Text>{unixToDate(item?.date, 'DD MMM YYYY HH:mm:ss')}</Text>
+          onPress={async () => {
+            pressHandler(item);
+          }}>
+          <Text style={styles.transactionDate}>
+            {unixToDate(item?.date, 'DD MMM YYYY HH:mm:ss')}
+          </Text>
           <View style={styles.itemContainer}>
             <View style={styles.itemInnerLeftContainer}>
               <Image
@@ -62,7 +97,7 @@ const TransactionList = (
           </View>
           {index + 1 === (data.length ?? 0) && (
             <View style={styles.footer}>
-              <Text>End Here</Text>
+              <Text style={styles.endFooter}>End Here</Text>
             </View>
           )}
         </TouchableOpacity>

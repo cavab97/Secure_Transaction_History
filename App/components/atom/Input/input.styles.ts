@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {MainColour} from '../../helpers/colors';
 import {TextInput} from 'react-native-paper';
 export const Input = styled(TextInput)<{
-  $primary?: boolean;
+  $primary: boolean;
   $bblRadius: string; // border-bottom-left-radius
   $bbrRadius: string; // border-bottom-right-radius
   $btlRadius: string; // border-top-left-radius

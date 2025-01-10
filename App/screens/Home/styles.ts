@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {matrix} from '../../components/helpers';
 import normalize from '../../components/helpers/normalizeText';
+import {FontColor} from '../../components/helpers/enum';
 
 // Define styles
 export const styles = StyleSheet.create({
@@ -71,8 +72,14 @@ export const styles = StyleSheet.create({
   itemDescriptionFont: {
     fontStyle: 'italic',
     transform: [{skewX: '23deg'}],
+    color: FontColor.Black,
+    fontSize: normalize(11),
   },
-  maskedAmountButton: {flexDirection: 'row', justifyContent: 'space-between'},
+  maskedAmountButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 5,
+  },
   balanceStyle: {},
   balanceContainer: {
     alignContent: 'flex-start',
@@ -85,25 +92,17 @@ export const styles = StyleSheet.create({
     alignContent: 'flex-start',
     padding: 5,
   },
-  describeStyle: {
-    // backgroundColor: 'grey',
-    alignContent: 'flex-start',
-    fontSize: normalize(15),
-    fontWeight: 'bold',
-  },
+
   scrollView: {
     paddingVertical: 20,
   },
   footer: {
     alignItems: 'center',
+    color: FontColor.Black,
+    fontSize: normalize(12),
   },
-  unlockFont: {
-    color: 'blue',
-  },
-  topicFont: {
-    fontSize: normalize(15),
-    fontWeight: 'bold',
-  },
+  endFooter: {color: FontColor.Black, fontSize: normalize(12)},
   loadingContainer: {},
   noDataContainer: {alignItems: 'center'},
+  transactionDate: {color: FontColor.Black, fontSize: normalize(12)},
 });

@@ -1,11 +1,8 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import {loginRequest} from '../../../redux/auth/Actions';
-import {successLogin} from '../../../redux/auth/Reducer';
-import BottonView from '../../../components/atom/Button/button.view';
 import Button from '../../../components/molecules/LoginButton';
-import LoginInput from '../../../components/molecules/LoginInput';
 import {TextInput} from 'react-native-paper';
 import LottieView from 'lottie-react-native';
 import {MainAnimation} from '../../../components/helpers/index';
@@ -14,9 +11,10 @@ import {showMessage} from 'react-native-flash-message';
 import {optionalConfigObject} from '../../../utils/fingerPrintSetting/data';
 import {handleBiometricError} from '../../../utils/errorHandle/fingerprint';
 import {checkConnection} from '../../../components/helpers/checkConnection';
+import {MessageType} from '../../../components/helpers/enum';
 
 function LoginView({navigation}: any) {
-  const [username, setUsername] = React.useState('john_doe');
+  const [username, setUsername] = React.useState('john_doe@gmail.com');
   const [password, setPassword] = React.useState('securePassword123');
   const dispatch = useDispatch();
 
@@ -30,21 +28,29 @@ function LoginView({navigation}: any) {
   };
 
   const pressHandler = async () => {
-    TouchID.authenticate('Please LogIn', optionalConfigObject)
-      .then((success: boolean) => {
-        if (success) {
-          signIn(username, password);
-        } else {
-          showMessage({
-            message: 'You need to log in once',
-            type: 'danger',
-          });
-        }
-        console.log('Authenticated Successfully');
-      })
-      .catch((error: any) => {
-        handleBiometricError(error);
+    // check connection before trigger api
+    const internetStatus = await checkConnection();
+    if (internetStatus == true) {
+      TouchID.authenticate('Please LogIn', optionalConfigObject)
+        .then((success: boolean) => {
+          if (success) {
+            signIn(username, password);
+          } else {
+            showMessage({
+              message: 'You need to log in once',
+              type: MessageType.Danger,
+            });
+          }
+        })
+        .catch((error: any) => {
+          handleBiometricError(error);
+        });
+    } else {
+      showMessage({
+        message: 'No network connection.',
+        type: 'danger',
       });
+    }
   };
 
   const pressLogin = async () => {
@@ -55,7 +61,7 @@ function LoginView({navigation}: any) {
     } else {
       showMessage({
         message: 'No network connection.',
-        type: 'danger', // You can change the type to 'success', 'info', or 'warning' depending on your message
+        type: MessageType.Danger,
       });
     }
   };
@@ -80,7 +86,6 @@ function LoginView({navigation}: any) {
               onPressIn={() => pressHandler()}
             />
           }
-          // borderBottomWidth={1}
         />
         <TextInput
           placeholder="Password"

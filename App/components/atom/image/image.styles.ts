@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import {MainColour} from '../../helpers/colors';
 
 export const ImageView = styled.Image<{
-  $primary?: boolean;
+  $primary: boolean;
   $bblRadius: string; // border-bottom-left-radius
   $bbrRadius: string; // border-bottom-right-radius
   $btlRadius: string; // border-top-left-radius

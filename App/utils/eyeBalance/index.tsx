@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import normalize from '../../components/helpers/normalizeText';
 import React from 'react';
+import {FontColor} from '../../components/helpers/enum';
 
 export const handleEyeSwitch = (
   press: () => void,
@@ -25,9 +26,10 @@ export const handleEyeSwitch = (
   }
 };
 const styles = StyleSheet.create({
-  itemDefaultFont: {color: 'black'},
+  itemDefaultFont: {color: FontColor.Black, fontSize: normalize(12)},
   balanceFont: {
-    fontSize: normalize(30),
+    fontSize: normalize(20),
     fontWeight: 'bold',
+    color: FontColor.Black,
   },
 });

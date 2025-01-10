@@ -3,6 +3,8 @@ import React from 'react';
 import Botton from '../../atom/Button/button.view';
 import Text from '../../atom/Text/text.view';
 import {ButtonProps} from '../../../model/Component';
+import normalize from '../../helpers/normalizeText';
+import {FontWeight} from '../../helpers/enum';
 function LoginButton({
   Title,
   borderBottomRightRadius = 0,
@@ -34,7 +36,9 @@ function LoginButton({
       marginLeft={marginLeft}
       borderWidth={borderWidth}
       position={position}>
-      <Text>{Title}</Text>
+      <Text textSize={normalize(12)} fontWeight={FontWeight.Bold}>
+        {Title}
+      </Text>
     </Botton>
   );
 }

@@ -1,7 +1,6 @@
 import {View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Input from '../../atom/Input/input.view';
-import Text from '../../atom/Text/text.view';
 function LoginInput({
   Title,
   borderBottomRightRadius = 0,
@@ -42,8 +41,7 @@ function LoginInput({
       position={position}
       borderWidth={borderWidth}
       borderBottomWidth={borderBottomWidth}
-      width={width}
-      ></Input>
+      width={width}></Input>
   );
 }
 

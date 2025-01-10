@@ -5,6 +5,7 @@ import {showMessage} from 'react-native-flash-message';
 import {dateToUnix, unixToDate} from '../../utils/time';
 import {successLogin} from './Reducer';
 import {LOGIN_REQUEST} from './Constants';
+import {MessageType} from '../../components/helpers/enum';
 
 /**
  * @function loginAction
@@ -28,7 +29,7 @@ function* loginAction(action: any) {
       error instanceof Error ? error.message : 'Unknown error occurred!';
     showMessage({
       message: errorMessage,
-      type: 'danger',
+      type: MessageType.Danger,
     });
   }
 }

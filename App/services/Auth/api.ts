@@ -4,6 +4,7 @@ import AxiosMockAdapter from 'axios-mock-adapter';
 import {LoginModel} from '../../model/Login';
 import {loginDetails, loginFailed} from '../data/loginData';
 import {showMessage} from 'react-native-flash-message';
+import {MessageType} from '../../components/helpers/enum';
 
 /**
  * @function login
@@ -43,30 +44,30 @@ export const login = async (params: LoginModel) => {
       if (error.code === 'ECONNABORTED') {
         showMessage({
           message: 'Request timeout error!',
-          type: 'danger',
+          type: MessageType.Danger,
         });
       } else if (errorMessage.includes('Network Error')) {
         showMessage({
           message: 'Network connection error!',
-          type: 'danger',
+          type: MessageType.Danger,
         });
       } else if (error.response) {
         // The server responded with an error status
         showMessage({
           message: `Response error${error.response}`,
-          type: 'danger',
+          type: MessageType.Danger,
         });
       } else {
         // Something else happened in setting up the request
         showMessage({
           message: `Unknown error${error.message}`,
-          type: 'danger',
+          type: MessageType.Danger,
         });
       }
     } else {
       showMessage({
         message: `Error${error}`,
-        type: 'danger',
+        type: MessageType.Danger,
       });
     }
 

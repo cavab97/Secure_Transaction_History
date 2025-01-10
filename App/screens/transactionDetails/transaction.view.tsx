@@ -5,18 +5,39 @@ import Button from '../../components/molecules/BackButton';
 import {StyleSheet, Text, View} from 'react-native';
 import normalize from '../../components/helpers/normalizeText';
 import LabelBox from '../../components/molecules/LabelBox';
+import {TransactionData} from '../../model/TransactionType';
+import {RouteProp} from '@react-navigation/native';
+import {TRANSACTION_ROUTE} from '../../navigation/Constants';
+import {unixToDate} from '../../utils/time';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {styles} from './styles';
 
-const TransactionView: React.FC = () => {
+type RootStackParamList = {
+  [TRANSACTION_ROUTE]: TransactionData;
+};
+interface TransactionViewProps {
+  route: RouteProp<RootStackParamList, typeof TRANSACTION_ROUTE>;
+}
+
+const TransactionView: React.FC<TransactionViewProps> = ({route}) => {
+  const {amount, date, description, type} = route.params;
+  console.log(`TransactionViewProps route${JSON.stringify(route.params)}`);
   return (
     <SafeAreaView>
       <View style={styles.headerContainer}>
         <Text style={styles.topicFont}>Transaction Details</Text>
         <View style={styles.mainContentContainer}>
-          <LabelBox labelText="Transaction Type" data={'Credit'}></LabelBox>
-          <LabelBox labelText="Transaction Amount" data={'Credit'}></LabelBox>
-          <LabelBox labelText="Description" data={'Credit'}></LabelBox>
+          <LabelBox labelText="Transaction Type" data={type}></LabelBox>
+          <LabelBox
+            labelText="Transaction Amount"
+            data={'MYR ' + (amount ?? 0).toFixed(2).toString()}></LabelBox>
+          <LabelBox labelText="Description" data={description}></LabelBox>
           <LabelBox labelText="Status" data={'Successful'}></LabelBox>
-          <LabelBox labelText="Date/Time" data={'Credit'}></LabelBox>
+          <LabelBox
+            labelText="Date/Time"
+            data={
+              date ? unixToDate(date, 'DD MMM YYYY HH:mm:ss') ?? '--' : '--'
+            }></LabelBox>
         </View>
         <Button
           onPress={() => NavigationService.goBack()}
@@ -34,22 +55,5 @@ const TransactionView: React.FC = () => {
     </SafeAreaView>
   );
 };
-const styles = StyleSheet.create({
-  headerContainer: {
-    alignItems: 'center',
-  },
-  topicFont: {
-    fontWeight: 'bold',
-    fontSize: normalize(15),
-  },
-  mainContentContainer: {
-    borderColor: 'black',
-    borderWidth: 1,
-    borderStyle: 'dotted',
-    width: '95%',
-    height: '85%',
-    paddingHorizontal: 10,
-  },
-});
 
 export default TransactionView;

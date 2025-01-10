@@ -1,8 +1,9 @@
-import {View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Botton from '../../atom/Button/button.view';
 import Text from '../../atom/Text/text.view';
 import {ButtonProps} from '../../../model/Component';
+import normalize from '../../helpers/normalizeText';
+import {FontWeight} from '../../helpers/enum';
 function Button({
   Title,
   borderBottomRightRadius = 0,
@@ -34,7 +35,9 @@ function Button({
       marginLeft={marginLeft}
       borderWidth={borderWidth}
       position={position}>
-      <Text>{Title}</Text>
+      <Text textSize={normalize(15)} fontWeight={FontWeight.Bold}>
+        {Title}
+      </Text>
     </Botton>
   );
 }

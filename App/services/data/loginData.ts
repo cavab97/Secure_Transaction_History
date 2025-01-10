@@ -1,5 +1,5 @@
 export const loginDetails = {
-  username: 'john_doe',
+  username: 'john_doe@gmail.com',
   password: 'securePassword123',
   successResponse: {
     status: 'success',

@@ -25,7 +25,6 @@ export const transactionSlice = createSlice({
       state.error = action.payload;
     },
     transactionSuccess: (state, action: PayloadAction<TransactionData[]>) => {
-      console.log(`action.payload transactionSuccess${action.payload}`);
       state.loading = false;
       state.data = action.payload;
     },

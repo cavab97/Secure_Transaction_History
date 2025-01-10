@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {SIGNIN_ROUTE} from '../../../navigation/Constants';
 
-import {useDispatch} from 'react-redux';
-import {View, TextInput, Text, StatusBar, TouchableOpacity} from 'react-native';
-import ImageView from '../../../components/molecules/ImageView';
+import {View, StatusBar, TouchableOpacity} from 'react-native';
 import Button from '../../../components/molecules/LoginButton';
 import LottieView from 'lottie-react-native';
 import {MainAnimation} from '../../../components/helpers/index';
@@ -17,13 +15,7 @@ function LoginView() {
   useEffect(() => {}, []);
   return (
     <View style={{backgroundColor: 'white', height: '100%'}}>
-      <StatusBar
-        animated={true}
-        backgroundColor="#61dafb"
-        // barStyle={statusBarStyle}
-        // showHideTransition={statusBarTransition}
-        hidden={false}
-      />
+      <StatusBar animated={true} backgroundColor="#61dafb" hidden={false} />
       <LottieView
         style={{height: '75%', width: '100%'}}
         source={MainAnimation('FirstScreen')}
@@ -38,7 +30,6 @@ function LoginView() {
           alignSelf: 'center',
           justifyContent: 'space-around',
           height: '15%',
-          // marginLeft: 35,
           alignContent: 'center',
           alignItems: 'center',
         }}>
@@ -50,16 +41,6 @@ function LoginView() {
           borderBottomRightRadius={15}
           borderTopRightRadius={15}
           position={'relative'}
-          width={50}
-          borderWidth={1}></Button>
-        <Button
-          borderBottomRightRadius={15}
-          Title={'REGISTER'}
-          borderRightColor={'grey'}
-          borderRightWidth={1.5}
-          borderBottomLeftRadius={15}
-          borderTopLeftRadius={15}
-          borderTopRightRadius={15}
           width={50}
           borderWidth={1}></Button>
       </View>

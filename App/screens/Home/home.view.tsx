@@ -1,12 +1,8 @@
 import {useState, useEffect} from 'react';
 import {
   View,
-  Text,
-  Image,
   TouchableOpacity,
   SafeAreaView,
-  StyleSheet,
-  Switch,
   RefreshControl,
   Alert,
 } from 'react-native';
@@ -26,6 +22,13 @@ import TransactionList from './transactionList';
 import React from 'react';
 import {checkConnection} from '../../components/helpers/checkConnection';
 import NavigationService from '../../navigation/NavigationService';
+import {
+  FontColor,
+  FontWeight,
+  MessageType,
+} from '../../components/helpers/enum';
+import Text from '../../components/atom/Text/text.view';
+import normalize from '../../components/helpers/normalizeText';
 
 const HomeView: React.FC = () => {
   const [isEnabled, setIsEnabled] = useState(true);
@@ -48,7 +51,7 @@ const HomeView: React.FC = () => {
       } else {
         showMessage({
           message: 'No network connection.',
-          type: 'danger', // You can change the type to 'success', 'info', or 'warning' depending on your message
+          type: MessageType.Danger,
         });
       }
     } catch (error) {
@@ -60,27 +63,30 @@ const HomeView: React.FC = () => {
     }, 1000);
   }, []);
 
-  const toggleSwitch = () => {
-    TouchID.authenticate('Please LogIn', optionalConfigObject)
-      .then((success: boolean) => {
-        if (success) {
-          setIsEnabled(previousState => !previousState);
-        } else {
-          showMessage({
-            message: 'You need to log in once',
-            type: 'danger',
-          });
-        }
-        console.log('Authenticated Successfully');
-      })
-      .catch((error: any) => {
-        dispatch(successLogout());
-        // showMessage({
-        //   message: 'You need to log in once',
-        //   type: 'danger',
-        // });
-        handleBiometricError(error);
+  const toggleSwitch = async () => {
+    const internetStatus = await checkConnection();
+    if (internetStatus == true) {
+      TouchID.authenticate('Please LogIn', optionalConfigObject)
+        .then((success: boolean) => {
+          if (success) {
+            setIsEnabled(previousState => !previousState);
+          } else {
+            showMessage({
+              message: 'You need to log in once',
+              type: MessageType.Danger,
+            });
+          }
+        })
+        .catch((error: any) => {
+          dispatch(successLogout());
+          handleBiometricError(error);
+        });
+    } else {
+      showMessage({
+        message: 'No network connection.',
+        type: MessageType.Danger,
       });
+    }
   };
 
   const toggleBalanceSwitch = () => {
@@ -104,7 +110,6 @@ const HomeView: React.FC = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.introduceContainer}>
-        <Text style={styles.describeStyle}>Welcome back</Text>
         <View style={styles.balanceContainer}>
           {handleEyeSwitch(toggleBalanceSwitch, 300, balanceHide)}
         </View>
@@ -112,12 +117,23 @@ const HomeView: React.FC = () => {
 
       <View style={styles.contentContainer}>
         <View style={styles.maskedAmountButton}>
-          <Text style={styles.topicFont}>Transaction History</Text>
+          <Text
+            textSize={normalize(15)}
+            fontWeight={FontWeight.Bold}
+            fontColor={FontColor.Black}>
+            Transaction History
+          </Text>
           <TouchableOpacity
+            style={{display: isEnabled ? 'flex' : 'none'}}
             onPress={() => {
               toggleSwitch();
             }}>
-            <Text style={styles.unlockFont}>Tap To View</Text>
+            <Text
+              textSize={normalize(12)}
+              fontWeight={FontWeight.ExtraBold}
+              fontColor={FontColor.Secondary}>
+              Tap To View
+            </Text>
           </TouchableOpacity>
         </View>
         <ScrollView
@@ -126,7 +142,13 @@ const HomeView: React.FC = () => {
           refreshControl={
             <RefreshControl refreshing={pullRefreshing} onRefresh={onRefresh} />
           }>
-          {TransactionList(data, loading, isEnabled, 'list', NavigationService)}
+          <TransactionList
+            data={data}
+            isLoading={loading}
+            isEnabled={isEnabled}
+            loader="list"
+            navigation={NavigationService}
+          />
         </ScrollView>
       </View>
     </SafeAreaView>

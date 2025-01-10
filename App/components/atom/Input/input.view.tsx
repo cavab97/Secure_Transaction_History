@@ -1,4 +1,4 @@
-import {View, Text, useColorScheme} from 'react-native';
+import {useColorScheme} from 'react-native';
 import React from 'react';
 import {Input} from './input.styles';
 
@@ -47,8 +47,7 @@ function InputView({
       $brColor={borderRightColor}
       $position={position}
       $borderWidth={borderWidth}
-      $borderBottomWidth={borderBottomWidth}
-      >
+      $borderBottomWidth={borderBottomWidth}>
       {children}
     </Input>
   );

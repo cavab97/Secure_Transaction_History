@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import normalize from '../../../components/helpers/normalizeText';
-import {TransactionData} from '../../../model/TransactionType';
+import Text from '../../atom/Text/text.view';
+import {AlignSelf, FontColor, FontWeight} from '../../helpers/enum';
 interface TransactionWithLabel {
   labelText: string;
   data: string;
@@ -11,27 +12,34 @@ function LabelBox({labelText, data}: TransactionWithLabel) {
   return (
     <View style={styles.transactionRowContainer}>
       <View style={styles.labelContainer}>
-        <Text style={styles.labelFont}>{labelText}</Text>
+        <Text
+          textSize={normalize(13.5)}
+          fontWeight={FontWeight.Regular}
+          fontFlex={'auto'}
+          fontColor={FontColor.Black}>
+          {labelText}
+        </Text>
       </View>
-      <View>
-        <Text style={styles.transactionDataFont}>{data}</Text>
+      <View style={styles.valueContainer}>
+        <Text
+          adjustsFontSizeToFit={true}
+          textSize={normalize(13.5)}
+          fontWeight={FontWeight.ExtraBold}
+          fontAlignSelf={AlignSelf.FlexEnd}
+          fontFlex={'1'}
+          fontColor={FontColor.Black}>
+          {data}
+        </Text>
       </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  labelFont: {
-    color: 'grey',
-    fontSize: normalize(14.5),
-  },
   labelContainer: {
-    backgroundColor: 'yellow',
-    width: '50%',
+    width: '45%',
   },
-  transactionDataFont: {
-    color: 'grey',
-    fontSize: normalize(14.5),
-    fontWeight: 'bold',
+  valueContainer: {
+    width: '50%',
   },
 
   transactionRowContainer: {
